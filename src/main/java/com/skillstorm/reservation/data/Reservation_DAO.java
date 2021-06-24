@@ -1,5 +1,10 @@
 package com.skillstorm.reservation.data;
 
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+
 import com.skillstorm.reservation.models.Reservation;
 
 /**
@@ -27,7 +32,19 @@ public interface Reservation_DAO {
 	String username ="root";
 	String password = "rootPassword1!";
 	
-	public int save(Reservation reserve);
+	public void save(Reservation reserve)throws SQLException;
+	
+	//all reservation will have specific details about the patron, including their reservation details
+	//with each key will represent a unique reservation invoice ie, the id or hash code --invoice number
+	//and value is the object details
+	public HashMap<Integer, Reservation> findReservationBy_ID(Reservation reserve)throws SQLException;
+	
+	public void update(Reservation reserve)throws SQLException, IOException;
+	
+	public boolean delete(Reservation reserve) throws SQLException;
+	
+	public List<Reservation> findAllReservations ()throws SQLException;
+	
 	
 		
 
