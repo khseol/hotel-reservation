@@ -5,44 +5,33 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.skillstorm.reservation.models.User_Information;
+
 /**
  * 
- * @author kathyhseol
- * an abstract class that comes with methods that implemented methods for CRUD 
- * operations.
+ * @author kathyhseol an abstract class that comes with methods that implemented
+ *         methods for CRUD operations.
  * 
- * the methods will require the objects to be casted to their respective type;
+ *         the methods will require the objects to be casted to their respective
+ *         type;
  */
 
-abstract class DAO_Basic {
-	static {
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-	String url = "jdbc:mysql://localhost:3306:RESERVATION";
+public interface DAO_Basic {
+
+	String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	String username = "root";
 	String password = "rootPassword1!";
-	protected Connection connection;
-	
-	//CONNECTION
-	public void connect()throws SQLException {
-		connection = DriverManager.getConnection(url, username, password);
-	}
-	
-	//CREATE 
-	abstract void save(Object o) throws SQLException;
-	
-	
-	//RETRIEVE
-	abstract List<Object> findAll() throws SQLException;
-	
-	//UPDATE
-	abstract void update(Object o) throws SQLException;
-	
-	//DELETE
-	abstract void delete (Object o) throws SQLException;
+
+	// CREATE
+	public boolean save(Object o) throws SQLException;
+
+	// RETRIEVE -- will probably need to add more retrieve options.
+	public List<User_Information> findAll() throws SQLException;
+
+	// UPDATE
+	public boolean update(Object o) throws SQLException;
+
+	// DELETE
+	public boolean delete(Object o) throws SQLException;
 
 }

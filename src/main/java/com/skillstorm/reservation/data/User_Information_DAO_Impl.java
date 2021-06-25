@@ -1,13 +1,18 @@
 package com.skillstorm.reservation.data;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 
 import com.skillstorm.reservation.models.User_Information;
 
-public class User_Information_DAO_Impl extends DAO_Basic implements AutoCloseable {
+public class User_Information_DAO_Impl implements DAO_Basic {
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -17,58 +22,94 @@ public class User_Information_DAO_Impl extends DAO_Basic implements AutoCloseabl
 	}
 
 	
+/**
+ * overridden method from the DAO_Basic abstract class that allows the class to save 
+ * data to the database, respective of their model and table.
+ * @param Object o --> casted to the respective object for this class.
+ * @exception throws an SQL exception and prints out other exceptions that occur when safe code is failed.
+ */
 	@Override
-	public void close() throws Exception {
-		// null checks
-		if (connection != null && !connection.isClosed()) {
-			this.connection.close();
-		}
-	}
-
-
-
-	@Override
-	void save(Object o) throws SQLException {
-		//String for inserting new user data into data base
-		String sql = "Insert into USER_INFORMATION (user_name, user_email, user_travel_location)";
-		try {
-			connect();
-			PreparedStatement stm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+	public boolean save(Object o) throws SQLException {
+		//String for inserting new user data into data base REMEMBER THE PARAMETER BINDINGSs
+		String sql = "Insert into USER_INFORMATION (user_name, user_email, user_travel_location) values (?,?,?)";
+		int rows = 0;
+		try(Connection connection = DriverManager.getConnection(url, username, password)){
+			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			User_Information user = (User_Information) o; //casted the object to user_information object
-			
 			stm.setString(1, user.getUser_name());
 			stm.setString(2, user.getUser_email());
 			stm.setInt(3, user.getTravel_location());
-			
-			stm.executeUpdate();
+			rows = stm.executeUpdate(); //returns 1 for success, 0 for no rows changed
 			
 		}catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("something happened");
 		}
 		
+		return rows>0?true:false;
+	}
+
+
+	
+	public List<User_Information> findAll() throws SQLException {
+		String sql = "Select user_id, user_name, user_email, user_travel_location from USER_INFORMATION";
+		List<User_Information> allRegisteredUsers = new LinkedList<>();
+		try(Connection connection = DriverManager.getConnection(url, username, password)){
+			PreparedStatement stm = connection.prepareStatement(sql);
+			ResultSet rs = stm.executeQuery();
+			while(rs.next()) {
+				//create the object
+				User_Information users = new User_Information(rs.getString("user_name"), rs.getString("user_email"),
+						rs.getInt("user_travel_location"));
+				users.setUser_id(rs.getInt("user_id"));
+				
+				//add to the list
+				allRegisteredUsers.add(users);
+			}
+		}
+		System.out.println(allRegisteredUsers);
+		return allRegisteredUsers;
 	}
 
 
 
+	/**
+	 * for the assumption that their id is already populated...
+	 * but testing wise, i give a new object
+	 * and an existing id.
+	 * 
+	 * will need to consider redirecting to the save method if the information is present but the id
+	 * is not created.
+	 */
+	
 	@Override
-	List<Object> findAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	void update(Object o) throws SQLException {
-		// TODO Auto-generated method stub
+	public boolean update(Object o) throws SQLException {
+		String sql = "update USER_INFORMATION set user_name = ?, user_email = ?, user_travel_location = ? where user_id = ?";
+		int rows = 0;
+		try(Connection connection = DriverManager.getConnection(url, username, password)){
+			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			//type cast the object
+			User_Information user = (User_Information) o;
+			stm.setString(1, user.getUser_name());
+			stm.setString(2, user.getUser_email());
+			stm.setInt(3, user.getTravel_location());
+			stm.setInt(4, 3);
+			rows = stm.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Something went wrong!");
+		}
+		
+		return rows>0? true:false;
 		
 	}
 
 
 
 	@Override
-	void delete(Object o) throws SQLException {
+	public boolean delete(Object o) throws SQLException {
 		// TODO Auto-generated method stub
+		return false;
 		
 	}
 }
