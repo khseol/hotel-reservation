@@ -1,6 +1,6 @@
 package com.skillstorm.junit.dao;
 
-import static org.junit.Assert.assertArrayEquals;
+
 import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
