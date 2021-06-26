@@ -8,162 +8,163 @@ import java.util.List;
 
 /**
  * 
- * @author kathyhseol
- * the POJO that will define the state and behavior of the reservation system itself.
- * instance variables will include the field that are required to be in the final reservation
- * porduct:
- * invoice number
- * user name --> through the User_information object
- * user email
- * user traveling location
- * hotel name --> hotel information will most probably be grabbed by the user 
- * 				  when accessing the User_DAO_Impl to fill in these fields
- * hotel address
- * number of guest
- * number of rooms
+ * @author kathyhseol the POJO that will define the state and behavior of the
+ *         reservation system itself. instance variables will include the field
+ *         that are required to be in the final reservation product: invoice
+ *         number, user name --> through the User_information object user email
+ *         user traveling location hotel name --> hotel information will most
+ *         probably be grabbed by the user when accessing the User_DAO_Impl to
+ *         fill in these fields hotel address number of guest number of rooms
  * 
- * check-in date/time time format from the sql import: string - time in format "hh:mm:ss" //want to omit the ss...call the toString method.
- * check-out date/time
+ *         check in and check out will be coming from SQL as a datetime format:
+ *         YYYY-MM-DD hh:mm:ss
+ * 			
+ * 			this formatting of dates and time will be through the SimpleDateFormat class.			
  * 
- * total price;
+ *         total price;
  *
  */
 
 public class Reservation {
-	private int reserve_id;
-	private User_Information patron;
-	private int number_of_guest;
-	private int number_of_rooms;
-	private Date check_in_date;
-	private Time check_in_time;
-	private Date check_out_date;;
-	private Time check_out_time;
-	
-	private BigDecimal totalPrice;
-	
-	
-	private List<Integer> reservationCode = new LinkedList<>();
+	private int reservationID;
+	private User_Information userID;
+	private Hotel_Information hotelID;
+	private Date checkIn;
+	private Date checkOut;
+	private int numberOfGuests;
+	private int numberOfRooms;
+
+	private BigDecimal totalPay;
 
 	public Reservation() {
 		super();
 	}
 
-	public Reservation(User_Information patron, int number_of_guest, int number_of_rooms, Date check_in_date,
-			Time check_in_time, Date check_out_date, Time check_out_time, BigDecimal totalPrice) {
+	public Reservation(int reservationID) {
 		super();
-		this.patron = patron;
-		this.number_of_guest = number_of_guest;
-		this.number_of_rooms = number_of_rooms;
-		this.check_in_date = check_in_date;
-		this.check_in_time = check_in_time;
-		this.check_out_date = check_out_date;
-		this.check_out_time = check_out_time;
-		this.totalPrice = totalPrice;
+		this.reservationID = reservationID;
 	}
 
-	public int getReserve_id() {
-		return reserve_id;
+	public Reservation(User_Information userID, Hotel_Information hotelID, Date checkIn, Date checkOut,
+			int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
+		super();
+		this.userID = userID;
+		this.hotelID = hotelID;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.numberOfGuests = numberOfGuests;
+		this.numberOfRooms = numberOfRooms;
+		this.totalPay = totalPay;
 	}
 
-	public void setReserve_id(int reserve_id) {
-		this.reserve_id = reserve_id;
+	public Reservation(int reservationID, User_Information userID, Hotel_Information hotelID, Date checkIn,
+			Date checkOut, int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
+		super();
+		this.reservationID = reservationID;
+		this.userID = userID;
+		this.hotelID = hotelID;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.numberOfGuests = numberOfGuests;
+		this.numberOfRooms = numberOfRooms;
+		this.totalPay = totalPay;
 	}
 
-	public User_Information getPatron() {
-		return patron;
+	public int getReservationID() {
+		return reservationID;
 	}
 
-	public void setPatron(User_Information patron) {
-		this.patron = patron;
+	
+	public void setReservationID(int reservationID) {
+		this.reservationID = reservationID;
 	}
 
-	public int getNumber_of_guest() {
-		return number_of_guest;
+	
+	public User_Information getUserID() {
+		return userID;
 	}
 
-	public void setNumber_of_guest(int number_of_guest) {
-		this.number_of_guest = number_of_guest;
+	
+	public void setUserID(User_Information userID) {
+		this.userID = userID;
 	}
 
-	public int getNumber_of_rooms() {
-		return number_of_rooms;
+	
+	public Hotel_Information getHotelID() {
+		return hotelID;
 	}
 
-	public void setNumber_of_rooms(int number_of_rooms) {
-		this.number_of_rooms = number_of_rooms;
+	
+	public void setHotelID(Hotel_Information hotelID) {
+		this.hotelID = hotelID;
 	}
 
-	public Date getCheck_in_date() {
-		return check_in_date;
+	
+	public Date getCheckIn() {
+		return checkIn;
 	}
 
-	public void setCheck_in_date(Date check_in_date) {
-		this.check_in_date = check_in_date;
+	
+	public void setCheckIn(Date checkIn) {
+		this.checkIn = checkIn;
 	}
 
-	public Time getCheck_in_time() {
-		return check_in_time;
+	
+	public Date getCheckOut() {
+		return checkOut;
 	}
 
-	public void setCheck_in_time(Time check_in_time) {
-		this.check_in_time = check_in_time;
+	
+	public void setCheckOut(Date checkOut) {
+		this.checkOut = checkOut;
 	}
 
-	public Date getCheck_out_date() {
-		return check_out_date;
+	
+	public int getNumberOfGuests() {
+		return numberOfGuests;
 	}
 
-	public void setCheck_out_date(Date check_out_date) {
-		this.check_out_date = check_out_date;
+	
+	public void setNumberOfGuests(int numberOfGuests) {
+		this.numberOfGuests = numberOfGuests;
 	}
 
-	public Time getCheck_out_time() {
-		return check_out_time;
+	
+	public int getNumberOfRooms() {
+		return numberOfRooms;
 	}
 
-	public void setCheck_out_time(Time check_out_time) {
-		this.check_out_time = check_out_time;
+	
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
 	}
 
-	public BigDecimal getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(BigDecimal totalPrice) {
-		this.totalPrice = totalPrice;
-	}
 	
 	/**
 	 * 
-	 * @return int
-	 * method should try and generate a unique random integer that should act like an invoice order.
-	 * the reservation id itself could achieve the same thing, but it's sequential.
-	 * 
-	 * this is in the testing phase for now.
+	 * These two methods are special and will need to add validation for these methods so that the 
+	 * information being passed through is correct
+	 * will also need to access the pricing table through the hotel_information table for accurate results.
 	 */
-	public int generateCode() {
-		int reserveCode = (int)Math.random();
-		do {
-			if(reservationCode.contains(reserveCode)) {
-				reserveCode = (int)Math.random();
-			} else {
-				reservationCode.add(reserveCode);
-			}
-		} while (!reservationCode.contains(reserveCode));
-		
-		return reserveCode;
+	public BigDecimal getTotalPay() {
+		return totalPay;
 	}
+	public void setTotalPay(BigDecimal totalPay) {
+		this.totalPay = totalPay;
+	}
+
 	
+	/**
+	 * a lot of the information will most likely be reflected through the individual objects and their classes.
+	 * If more information is needed for reflection of the product, a second toString will be present
+	 * and later deleted for finalization.
+	 */
 	@Override
 	public String toString() {
-		return "Reservation [reserve_id=" + reserve_id + ", patron=" + patron + ", number_of_guest=" + number_of_guest
-				+ ", number_of_rooms=" + number_of_rooms + ", check_in_date=" + check_in_date + ", check_in_time="
-				+ check_in_time + ", check_out_date=" + check_out_date + ", check_out_time=" + check_out_time
-				+ ", totalPrice=" + totalPrice + "]";
+		return "Reservation [reservationID=" + reservationID + ", userID=" + userID + ", hotelID=" + hotelID
+				+ ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", numberOfGuests=" + numberOfGuests
+				+ ", numberOfRooms=" + numberOfRooms + ", totalPay=" + totalPay + "]";
 	}
-	
-	
-	
-	
 
+	
 }
