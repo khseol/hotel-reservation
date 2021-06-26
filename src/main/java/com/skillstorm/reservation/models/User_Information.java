@@ -27,6 +27,18 @@ public class User_Information {
 		super();
 	}
 	
+	/**
+	 * 
+	 * @param user_id
+	 * constructor is in the stages of testing.
+	 * Constructor is used to find the existing data,
+	 * and set the properties of the object...
+	 */
+	public User_Information(int user_id) {
+		super();
+		this.user_id = user_id;
+	}
+
 	public User_Information(String user_name, String user_email, int travel_location) {
 		super();
 		this.user_name = user_name;
