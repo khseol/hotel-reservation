@@ -4,22 +4,59 @@
 holding keywords and the page descriptions that 
 are to appear in some search result, css links/references character set declartion and etc.-->
 <head>
-<link rel = "style" href = "/styling/style.css">
+<!--bootstrap CSS link-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <meta charset="UTF-8">
 <!--title element: setting the title of the page, appearing 
 	in the browser tab and name when adding to a favorites list-->
 <title>Hotel Reservation Portal</title> 
-<!--bootstrap CSS link-->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
 </head>
+<style>
+	body{
+		background: rgb(181, 157, 228);
+		color: whitesmoke;
+	}
+	.titleDiv{
+		text-align: center;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+		font-size: x-large;
+	}
+	.col-lg-4{
+		text-align: center;
+		font-size: 25px;
+	}
+</style>
 
 <body> <!--body element that contains ALL viewable content for the webpage.-->
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class = "titleDiv">
-			<h1>HELLO USERS</h1>
+			<h1>HOTEL RESERVATION PORTAL</h1>
 		</div>
+		<div class = "row">
+			<div class = "col-lg-4">
+				Where are you heading?
+				<form>
+					<label for="location" style="font-size: 20px;">Select the state</label><br>
+					<select name = "state'" id = "location_id">
+						<option value=" NC"> North Carolina</option> <!-- most of the content in html will be switched to jsp for dunamics.-->
+				</form>
+			</div>
+			<div class = "col-lg-4">
+				How many guest are staying?
+				<form>
+					<label for = "number_of_guests" style="font-size: 20px;">How many...</label><br>
+					<input type="number" id = "guest_numbers">
+
+				</form>
+			</div>
+			<div class = "col-lg-4">
+				How many rooms?
+			</div>
+			
+		</div>
+
+
 		
 	</div>
 
