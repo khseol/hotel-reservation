@@ -1,6 +1,5 @@
 package com.skillstorm.reservation.data;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +12,8 @@ import com.skillstorm.reservation.models.Hotel_Information;
 
 /**
  * 
- * @author kathyhseol DAO class that will will only retrieve information and
+ * @author kathyhseol 
+ * 		   DAO class that will will only retrieve information and
  *         store them as objects will also be used to show information based on
  *         certain conditions passed through.
  * 
