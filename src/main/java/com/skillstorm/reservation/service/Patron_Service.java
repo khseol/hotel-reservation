@@ -26,7 +26,7 @@ public class Patron_Service {
 	}
 	
 	public List<User_Information> showAllUsers()throws SQLException{
-		List<User_Information> allPatrons = patronService.findAll();
+		List<User_Information> allPatrons = patronService.findAllUsers();
 		return allPatrons;
 		
 	}

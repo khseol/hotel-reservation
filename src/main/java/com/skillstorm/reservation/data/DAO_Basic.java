@@ -3,6 +3,7 @@ package com.skillstorm.reservation.data;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.skillstorm.reservation.models.Reservation;
 import com.skillstorm.reservation.models.User_Information;
 
 /**
@@ -23,9 +24,9 @@ public interface DAO_Basic {
 	// CREATE
 	public boolean save(Object o) throws SQLException;
 
-	// RETRIEVE -- will probably need to add more retrieve options.
-	public List<User_Information> findAll() throws SQLException;
-
+	// RETRIEVE -- will probably need to add more retrieve options...some methods will have their own 
+					//unique retrieve methods
+	
 	// UPDATE
 	public boolean update(Object o) throws SQLException;
 

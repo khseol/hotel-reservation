@@ -46,7 +46,7 @@ public class Test_UserDAO {
 	 * result --> sucess
 	 */
 	public void retrieve_users() throws SQLException{
-		assertEquals(4, testUser.findAll().size()); 
+		assertEquals(4, testUser.findAllUsers().size()); 
 		
 	}
 	

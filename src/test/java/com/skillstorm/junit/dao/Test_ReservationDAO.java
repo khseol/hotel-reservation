@@ -19,7 +19,7 @@ import com.skillstorm.reservation.models.User_Information;
  * class that will test out the DAO methods in the reservation DAO class to 
  * determine working logic and debugging
  * 
- * Refactoring the reservation model to accept check in and check out as Calendar objects.
+ * Refactor the reservation model to accept check in and check out as Calendar objects.
  *
  */
 public class Test_ReservationDAO {
@@ -28,21 +28,26 @@ public class Test_ReservationDAO {
 	/**
 	 * 
 	 * @throws SQLException
-	 * this ran true...when i took out the function for finding total pay....
+	 * after fixing up the totalpay in model, this test ran true;
 	 */
-	@Test
+
 	public void saveReservatio()throws SQLException{
 		//dummy object
 		//parameters to take in are--> user id, hotel id, check in, check out, number of guests, number of rooms, total pay
 		Calendar reserve_CI = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 20, 10, 0, 0);
+		reserve_CI.set(2021, 7, 16, 10, 0, 0);
 		Calendar reserve_CO = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 25, 8, 0, 0);
+		reserve_CI.set(2021, 7, 20, 8, 0, 0);
 		User_Information test_user = new User_Information(3);
 		Hotel_Information test_hotel = new Hotel_Information(61);
 		
-		Reservation testReserve = new Reservation(test_user, test_hotel, reserve_CI, reserve_CO, 2,1); 
+		Reservation testReserve = new Reservation(test_user, test_hotel, reserve_CI, reserve_CO, 5,5); 
 		
 		assertEquals(true, testReservation.save(testReserve));
+	}
+
+	@Test
+	public void findAllReservations()throws SQLException{
+		assertEquals(2,testReservation.findAllReservations().size());
 	}
 }

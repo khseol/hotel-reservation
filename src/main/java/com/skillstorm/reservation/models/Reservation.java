@@ -3,7 +3,7 @@ package com.skillstorm.reservation.models;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Calendar;
-
+import java.util.StringTokenizer;
 
 import com.skillstorm.reservation.service.Hotel_Service;
 
@@ -35,7 +35,6 @@ public class Reservation {
 	private Calendar checkOut;
 	private int numberOfGuests;
 	private int numberOfRooms;
-
 	private BigDecimal totalPay;
 
 	public Reservation() {
@@ -72,7 +71,6 @@ public class Reservation {
 		this.totalPay = totalPay;
 	}
 	
-	
 
 	public Reservation(User_Information userID, Hotel_Information hotelID, Calendar checkIn, Calendar checkOut,
 			int numberOfGuests, int numberOfRooms) {
@@ -85,6 +83,7 @@ public class Reservation {
 		this.numberOfRooms = numberOfRooms;
 	}
 
+	
 	public int getReservationID() {
 		return reservationID;
 	}
@@ -185,5 +184,44 @@ public class Reservation {
 				+ ", numberOfRooms=" + numberOfRooms + ", totalPay=" + totalPay + "]";
 	}
 
+	
+	/**
+	 * method that will be used to convert the string of the date time format to a calendar format.
+	 * as a string in the form of YYYY-MM-DD hh:mm:ss  i will need a tokenizer to separate
+	 * the various fields in the format
+	 * 
+	 * i need to figure out why this is returning the address of the calendar class....
+	 * @param dateTime
+	 * @return
+	 */
+	public Calendar dateTimeToCalendar(String dateTime) {
+		Calendar date_and_time = Calendar.getInstance();
+		
+		//null checks
+		if(dateTime != null) {
+			StringTokenizer calendarTokens = new StringTokenizer(dateTime, " "); //where the parm is the datetime string and the delim is the space between
+			
+			//separate the string into two using the object with delim of " "
+			String dates = calendarTokens.nextToken();
+			String times = calendarTokens.nextToken();
+			
+			
+			calendarTokens = new StringTokenizer(dates, "-"); //used to tokenize through the dates and parse them
+			int y = Integer.parseInt(calendarTokens.nextToken());
+			int m = Integer.parseInt(calendarTokens.nextToken());
+			int d = Integer.parseInt(calendarTokens.nextToken());
+			
+			calendarTokens = new StringTokenizer(times, ":"); //used to tokenize the times.
+			int hr = Integer.parseInt(calendarTokens.nextToken());
+			int min = Integer.parseInt(calendarTokens.nextToken());
+			int sec = Integer.parseInt(calendarTokens.nextToken());
+			
+			date_and_time.set(y, m, d, hr, min, sec); //theoretically should work...
+		}
+		
+		return date_and_time;
+	}
+	
+	
 	
 }

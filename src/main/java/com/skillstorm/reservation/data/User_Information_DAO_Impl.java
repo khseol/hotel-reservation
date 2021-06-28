@@ -54,7 +54,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 * the find all method that is used to list out all existing informations about
 	 * the users in the USER_INFORMATION table. takes no parameters
 	 */
-	public List<User_Information> findAll() throws SQLException {
+	public List<User_Information> findAllUsers() throws SQLException {
 		String sql = "Select user_id, user_name, user_email, user_travel_location from USER_INFORMATION";
 		List<User_Information> allRegisteredUsers = new LinkedList<>();
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -72,9 +72,22 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			System.out.println("Something went wron in findAll method!");
 			e.printStackTrace();
 		}
-		System.out.println(allRegisteredUsers);
+		//System.out.println(allRegisteredUsers);
 		return allRegisteredUsers;
 	}
+	
+	/**
+	 * find user by Id method...and extension of the find all users without the list
+	 */
+	public User_Information findUserByID(User_Information user) throws SQLException{
+		
+		return null;
+	}
+	
+	
+	
+	
+	
 
 	/**
 	 * this method is implemented with the assumption that their id is already
