@@ -62,7 +62,7 @@ public class Hotel_Information_DAO_Impl {
 			System.out.println("Something went wrong in findAllHotel method");
 			e.printStackTrace();
 		}
-		System.out.println(allHotels);
+		//System.out.println(allHotels);
 		return allHotels;
 	}
 
@@ -79,7 +79,7 @@ public class Hotel_Information_DAO_Impl {
 				hotel = new Hotel_Information(rs.getInt("hotel_id"), rs.getString("hotel_name"),
 						rs.getInt("hotel_location_id"), rs.getString("hotel_address_name"), rs.getInt("hotel_type"),
 						rs.getBigDecimal("pricing.pricing_sale_rate"), rs.getBigDecimal("pricing.pricing_tax_rate"));
-				System.out.println(hotel);
+				//System.out.println(hotel);
 			}
 		} catch (Exception e) {
 			System.out.println("Something went wrong in the findByID hotel method");
@@ -91,6 +91,10 @@ public class Hotel_Information_DAO_Impl {
 	/**
 	 * the DAO method that will retrieve the location name of the hotel
 	 * this will be based on the hotel's id number.
+	 * 
+	 * REMNDER: THE USER WILL REFERENCES TRAVEL LOCATION TO THE HOTEL_LOCATION_ID
+	 * SO...IN ORDER FOR THE RESERVATION TO HAVE A HOTEL_ID, THE USER WILL ELECT THE HOTEL BASED ON THEIR
+	 * TRAVELLING LOCATION, RECEIVED FROM THE CLIENT SIDE.
 	 * 
 	 */
 	public String hotelLocatioName(Hotel_Information hotel) throws SQLException {
@@ -113,4 +117,5 @@ public class Hotel_Information_DAO_Impl {
 		return locationName;
 	}
 
+	
 }

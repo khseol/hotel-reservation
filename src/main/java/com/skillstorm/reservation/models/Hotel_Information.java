@@ -111,7 +111,7 @@ public class Hotel_Information {
 	}
 
 	public BigDecimal getHotelTaxRate() {
-		System.out.println(hotelTaxRate);
+		//System.out.println(hotelTaxRate);
 		return hotelTaxRate;
 	}
 

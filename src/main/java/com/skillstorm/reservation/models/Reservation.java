@@ -1,7 +1,10 @@
 package com.skillstorm.reservation.models;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.SQLException;
+import java.util.Calendar;
+
+import com.skillstorm.reservation.data.Hotel_Information_DAO_Impl;
 
 
 /**
@@ -25,10 +28,10 @@ import java.util.Date;
 
 public class Reservation {
 	private int reservationID;
-	private User_Information userID;
+	private User_Information userID; //i am not sure how the set object will work out.
 	private Hotel_Information hotelID;
-	private Date checkIn;
-	private Date checkOut;
+	private Calendar checkIn;
+	private Calendar checkOut;
 	private int numberOfGuests;
 	private int numberOfRooms;
 
@@ -43,7 +46,7 @@ public class Reservation {
 		this.reservationID = reservationID;
 	}
 
-	public Reservation(User_Information userID, Hotel_Information hotelID, Date checkIn, Date checkOut,
+	public Reservation(User_Information userID, Hotel_Information hotelID, Calendar checkIn, Calendar checkOut,
 			int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
 		super();
 		this.userID = userID;
@@ -55,8 +58,8 @@ public class Reservation {
 		this.totalPay = totalPay;
 	}
 
-	public Reservation(int reservationID, User_Information userID, Hotel_Information hotelID, Date checkIn,
-			Date checkOut, int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
+	public Reservation(int reservationID, User_Information userID, Hotel_Information hotelID, Calendar checkIn,
+			Calendar checkOut, int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
 		super();
 		this.reservationID = reservationID;
 		this.userID = userID;
@@ -66,6 +69,19 @@ public class Reservation {
 		this.numberOfGuests = numberOfGuests;
 		this.numberOfRooms = numberOfRooms;
 		this.totalPay = totalPay;
+	}
+	
+	
+
+	public Reservation(User_Information userID, Hotel_Information hotelID, Calendar checkIn, Calendar checkOut,
+			int numberOfGuests, int numberOfRooms) {
+		super();
+		this.userID = userID;
+		this.hotelID = hotelID;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.numberOfGuests = numberOfGuests;
+		this.numberOfRooms = numberOfRooms;
 	}
 
 	public int getReservationID() {
@@ -98,22 +114,22 @@ public class Reservation {
 	}
 
 	
-	public Date getCheckIn() {
+	public Calendar getCheckIn() {
 		return checkIn;
 	}
 
 	
-	public void setCheckIn(Date checkIn) {
+	public void setCheckIn(Calendar checkIn) {
 		this.checkIn = checkIn;
 	}
 
 	
-	public Date getCheckOut() {
+	public Calendar getCheckOut() {
 		return checkOut;
 	}
 
 	
-	public void setCheckOut(Date checkOut) {
+	public void setCheckOut(Calendar checkOut) {
 		this.checkOut = checkOut;
 	}
 
@@ -144,17 +160,13 @@ public class Reservation {
 	 * information being passed through is correct
 	 * will also need to access the pricing table through the hotel_information table for accurate results.
 	 */
-	public BigDecimal getTotalPay() {
-		return totalPay;
-	}
-	public void setTotalPay(BigDecimal totalPay) {
-		double subtotal = numberOfGuests * hotelID.getHotelSaleRate().doubleValue();
-		double total = subtotal + (subtotal*hotelID.getHotelTaxRate().doubleValue());
+	public BigDecimal getTotalPay() throws SQLException {
 		
-		totalPay = new BigDecimal(total);
+		return totalPay; //this needs fixing.
 	}
-
-	
+	public void setTotalPay(BigDecimal totalPay) {	
+		this.totalPay = totalPay;
+	}
 	/**
 	 * a lot of the information will most likely be reflected through the individual objects and their classes.
 	 * If more information is needed for reflection of the product, a second toString will be present
