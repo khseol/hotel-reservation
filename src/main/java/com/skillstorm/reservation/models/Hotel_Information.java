@@ -46,6 +46,20 @@ public class Hotel_Information {
 		this.hotelLocationAddress = hotelLocationAddress;
 		this.hotelType = hotelType;
 	}
+	
+	
+
+	public Hotel_Information(int hotelID, String hotelName, int hotelLocationID, String hotelLocationAddress,
+			int hotelType, BigDecimal hotelSaleRate, BigDecimal hotelTaxRate) {
+		super();
+		this.hotelID = hotelID;
+		this.hotelName = hotelName;
+		this.hotelLocationID = hotelLocationID;
+		this.hotelLocationAddress = hotelLocationAddress;
+		this.hotelType = hotelType;
+		this.hotelSaleRate = hotelSaleRate;
+		this.hotelTaxRate = hotelTaxRate;
+	}
 
 	public int getHotelID() {
 		return hotelID;
@@ -88,6 +102,7 @@ public class Hotel_Information {
 	}
 
 	public BigDecimal getHotelSaleRate() {
+		System.out.println(hotelSaleRate);
 		return hotelSaleRate;
 	}
 
@@ -96,6 +111,7 @@ public class Hotel_Information {
 	}
 
 	public BigDecimal getHotelTaxRate() {
+		System.out.println(hotelTaxRate);
 		return hotelTaxRate;
 	}
 
