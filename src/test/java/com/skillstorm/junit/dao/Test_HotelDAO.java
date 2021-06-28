@@ -31,9 +31,10 @@ public class Test_HotelDAO {
 	 * plus hotel pricing information.
 	 * @throws SQLException
 	 */
+
 	public void findHotelByID_Test() throws SQLException{
 		String sampleHotel = "Hotel_Information [hotelID=2, hotelName=Mayer and Sons, hotelLocationID=29, hotelLocationAddress=1603 South Lane, hotelType=1, hotelSaleRate=322.00, hotelTaxRate=17.41]";
-		assertEquals(sampleHotel, testHotel.findByID(2).toString());
+		assertEquals(sampleHotel, testHotel.findByID(95).toString());
 	}
 	
 	/**

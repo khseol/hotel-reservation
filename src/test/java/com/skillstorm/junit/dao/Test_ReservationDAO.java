@@ -35,13 +35,13 @@ public class Test_ReservationDAO {
 		//dummy object
 		//parameters to take in are--> user id, hotel id, check in, check out, number of guests, number of rooms, total pay
 		Calendar reserve_CI = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 3, 12, 30, 0);
+		reserve_CI.set(2021, 7, 20, 10, 0, 0);
 		Calendar reserve_CO = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 6, 12, 0, 0);
-		User_Information test_user = new User_Information(2);
-		Hotel_Information test_hotel = new Hotel_Information(95);
+		reserve_CI.set(2021, 7, 25, 8, 0, 0);
+		User_Information test_user = new User_Information(3);
+		Hotel_Information test_hotel = new Hotel_Information(61);
 		
-		Reservation testReserve = new Reservation(test_user, test_hotel, reserve_CI, reserve_CO, 3,3, new BigDecimal(0)); 
+		Reservation testReserve = new Reservation(test_user, test_hotel, reserve_CI, reserve_CO, 2,1); 
 		
 		assertEquals(true, testReservation.save(testReserve));
 	}

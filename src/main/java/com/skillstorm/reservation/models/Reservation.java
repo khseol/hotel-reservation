@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-import com.skillstorm.reservation.data.Hotel_Information_DAO_Impl;
+
+import com.skillstorm.reservation.service.Hotel_Service;
 
 
 /**
@@ -156,17 +157,22 @@ public class Reservation {
 	
 	/**
 	 * 
-	 * These two methods are special and will need to add validation for these methods so that the 
-	 * information being passed through is correct
-	 * will also need to access the pricing table through the hotel_information table for accurate results.
+	 * Fixed up the calculations to retrieve total pay.
+	 * debating over the fact to keep setTotalPay method...
 	 */
 	public BigDecimal getTotalPay() throws SQLException {
-		
-		return totalPay; //this needs fixing.
+		Hotel_Service hotelInfo = new Hotel_Service();
+		Hotel_Information sample = hotelInfo.getHotelByID(hotelID.getHotelID());
+		BigDecimal subtotal = sample.getHotelSaleRate().multiply(new BigDecimal(numberOfRooms));
+		BigDecimal taxBy1h = sample.getHotelTaxRate().divide(new BigDecimal(100));
+
+		totalPay = subtotal.add(subtotal.multiply(taxBy1h)); 
+		return totalPay;
 	}
-	public void setTotalPay(BigDecimal totalPay) {	
+	public void setTotalPay(BigDecimal totalPay) {
 		this.totalPay = totalPay;
 	}
+	
 	/**
 	 * a lot of the information will most likely be reflected through the individual objects and their classes.
 	 * If more information is needed for reflection of the product, a second toString will be present

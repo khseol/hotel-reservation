@@ -102,7 +102,7 @@ public class Hotel_Information {
 	}
 
 	public BigDecimal getHotelSaleRate() {
-		System.out.println(hotelSaleRate);
+		//System.out.println(hotelSaleRate);
 		return hotelSaleRate;
 	}
 
