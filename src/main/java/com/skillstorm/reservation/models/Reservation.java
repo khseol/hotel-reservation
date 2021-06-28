@@ -148,7 +148,10 @@ public class Reservation {
 		return totalPay;
 	}
 	public void setTotalPay(BigDecimal totalPay) {
-		this.totalPay = totalPay;
+		double subtotal = numberOfGuests * hotelID.getHotelSaleRate().doubleValue();
+		double total = subtotal + (subtotal*hotelID.getHotelTaxRate().doubleValue());
+		
+		totalPay = new BigDecimal(total);
 	}
 
 	
