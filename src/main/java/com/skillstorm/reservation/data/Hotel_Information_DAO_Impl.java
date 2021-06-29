@@ -41,10 +41,10 @@ public class Hotel_Information_DAO_Impl {
 	/**
 	 * 
 	 * @return
-	 * @throws SQLException the fields are listed as followed: id, name, location,
+	 * the fields are listed as followed: id, name, location,
 	 *                      address, type, sale rate and tax rate
 	 */
-	public List<Hotel_Information> findAllHotels() throws SQLException {
+	public List<Hotel_Information> findAllHotels() {
 		String sql = "select hotel_information.hotel_id, hotel_information.hotel_name, hotel_information.hotel_location_id, hotel_information.hotel_address_name, hotel_information.hotel_type, pricing.pricing_sale_rate, pricing.pricing_tax_rate from hotel_information\n"
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id;";
 		List<Hotel_Information> allHotels = new LinkedList<>();
@@ -60,7 +60,7 @@ public class Hotel_Information_DAO_Impl {
 
 				allHotels.add(hotel);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in findAllHotel method");
 			e.printStackTrace();
 		}
@@ -68,7 +68,7 @@ public class Hotel_Information_DAO_Impl {
 		return allHotels;
 	}
 
-	public Hotel_Information findByID(int id) throws SQLException {
+	public Hotel_Information findByID(int id) {
 		String sql = "select hotel_information.hotel_id, hotel_information.hotel_name, hotel_information.hotel_location_id, hotel_information.hotel_address_name, hotel_information.hotel_type, pricing.pricing_sale_rate, pricing.pricing_tax_rate from hotel_information\n"
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id where hotel_id = ?;";
 		Hotel_Information hotel = null;
@@ -83,7 +83,7 @@ public class Hotel_Information_DAO_Impl {
 						rs.getBigDecimal("pricing.pricing_sale_rate"), rs.getBigDecimal("pricing.pricing_tax_rate"));
 				//System.out.println(hotel);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in the findByID hotel method");
 			e.printStackTrace();
 		}
@@ -99,7 +99,7 @@ public class Hotel_Information_DAO_Impl {
 	 * TRAVELLING LOCATION, RECEIVED FROM THE CLIENT SIDE.
 	 * 
 	 */
-	public String hotelLocatioName(Hotel_Information hotel) throws SQLException {
+	public String hotelLocatioName(Hotel_Information hotel) {
 		String sql = "select location_state_name from TRAVEL_LOCATION\n" + "inner join hotel_information\n"
 				+ "on TRAVEL_LOCATION.location_id = hotel_Information.hotel_location_id\n"
 				+ "where hotel_id = ?;";
@@ -112,7 +112,7 @@ public class Hotel_Information_DAO_Impl {
 			while (rs.next()) {
 				locationName = rs.getString("location_state_name");
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in hotelLocationName method");
 			e.printStackTrace();
 		}

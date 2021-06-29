@@ -1,6 +1,6 @@
 package com.skillstorm.reservation.service;
 
-import java.sql.SQLException;
+
 import java.util.List;
 
 import com.skillstorm.reservation.data.User_Information_DAO_Impl;
@@ -19,26 +19,26 @@ public class Patron_Service {
 
 	User_Information_DAO_Impl patronService = new User_Information_DAO_Impl();
 
-	public boolean saveNewUser(User_Information patron) throws SQLException {
+	public boolean saveNewUser(User_Information patron){
 		return patronService.save(patron); // the patron object will be type casted when passing through the method
 											// execution process.
 	}
 
-	public List<User_Information> showAllUsers() throws SQLException {
+	public List<User_Information> showAllUsers(){
 		List<User_Information> allPatrons = patronService.findAllUsers();
 		return allPatrons;
 
 	}
 
-	public boolean updateUser(User_Information patron) throws SQLException {
+	public boolean updateUser(User_Information patron){
 		return patronService.update(patron);
 	}
 
-	public boolean deleteUser(User_Information patron) throws SQLException {
+	public boolean deleteUser(User_Information patron){
 		return patronService.delete(patron);
 	}
 
-	public User_Information findUserByID(int id) throws SQLException {
+	public User_Information findUserByID(int id){
 		return patronService.findUserByID(id);
 	}
 

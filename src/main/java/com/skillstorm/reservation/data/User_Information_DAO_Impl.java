@@ -29,7 +29,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 *                   when safe code is failed.
 	 */
 	@Override
-	public boolean save(Object o) throws SQLException {
+	public boolean save(Object o) {
 		// String for inserting new user data into data base REMEMBER THE PARAMETER
 		// BINDINGSs
 		String sql = "Insert into USER_INFORMATION (user_name, user_email, user_travel_location) values (?,?,?)";
@@ -42,7 +42,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			stm.setInt(3, user.getTravel_location());
 			rows = stm.executeUpdate(); // returns 1 for success, 0 for no rows changed
 
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("something happened in save method!");
 			e.printStackTrace();
 		}
@@ -54,7 +54,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 * the find all method that is used to list out all existing informations about
 	 * the users in the USER_INFORMATION table. takes no parameters
 	 */
-	public List<User_Information> findAllUsers() throws SQLException {
+	public List<User_Information> findAllUsers() {
 		String sql = "Select user_id, user_name, user_email, user_travel_location from USER_INFORMATION";
 		List<User_Information> allRegisteredUsers = new LinkedList<>();
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -68,7 +68,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 				// add to the list
 				allRegisteredUsers.add(users);
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in findAll method!");
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	/**
 	 * find user by Id method...and extension of the find all users without the list
 	 */
-	public User_Information findUserByID(int id) throws SQLException{
+	public User_Information findUserByID(int id){
 		String sql = "select user_id, user_name, user_email, user_travel_location from user_information where user_id = ?";
 		User_Information theUser = null;
 		try(Connection connection = DriverManager.getConnection(url, username, password)){
@@ -90,7 +90,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 				theUser = new User_Information(rs.getInt("user_id"),rs.getString("user_name"), rs.getString("user_email"),
 						rs.getInt("user_travel_location"));
 			}
-		}catch (Exception e) {
+		}catch (SQLException e) {
 			System.out.println("Something went wrong int findByUserID method");
 			e.printStackTrace();
 		}
@@ -107,7 +107,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 * populated.
 	 */
 	@Override
-	public boolean update(Object o) throws SQLException {
+	public boolean update(Object o) {
 		String sql = "update USER_INFORMATION set user_name = ?, user_email = ?, user_travel_location = ? where user_id = ?";
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -119,7 +119,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			stm.setInt(3, user.getTravel_location());
 			stm.setInt(4, user.getUser_id());
 			rows = stm.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong!");
 			e.printStackTrace();
 		}
@@ -133,7 +133,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 * specific id.
 	 */
 	@Override
-	public boolean delete(Object o) throws SQLException {
+	public boolean delete(Object o){
 		String sql = "delete from USER_INFORMATION where user_id = ?"; // the SQL statement that was tested in MySQL
 		int rows = 0; // again, rows affected will return integer greater than 0 if successful, 0
 						// otherwise.
@@ -145,7 +145,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 
 			// execute and update the query.
 			rows = stm.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something happened in delete method!");
 			e.printStackTrace();
 		}

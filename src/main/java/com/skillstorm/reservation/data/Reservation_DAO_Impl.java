@@ -31,7 +31,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 	 * returns a boolean value to indicate rows affected in the database.
 	 */
 	@Override
-	public boolean save(Object o) throws SQLException {
+	public boolean save(Object o) {
 		String sql = "insert into reservation_invoice(reserve_user_id, reserve_hotel_id, \n"
 				+ "reserve_check_in, reserve_check_out, reserve_number_of_guests, \n"
 				+ "reserve_number_of_rooms, reserve_total_pay) \n" + "values (?,?,?,?,?,?,?);";
@@ -65,9 +65,9 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 	 * method that should list all existing reservations in the data base.
 	 * 
 	 * @return
-	 * @throws SQLException
+	 * 
 	 */
-	public List<Reservation> findAllReservations() throws SQLException {
+	public List<Reservation> findAllReservations() {
 		String sql = "select reserve_id, reserve_user_id, reserve_hotel_id, reserve_check_in, \n"
 				+ "reserve_check_out, reserve_number_of_guests, "
 				+ "reserve_number_of_rooms, reserve_total_pay from reservation_invoice";
@@ -97,6 +97,9 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 
 				allReservations.add(res);
 			}
+		}catch (SQLException e) {
+			System.out.println("Something went wrong here");
+			e.printStackTrace();
 		}
 		System.out.println(allReservations);
 		return allReservations;
@@ -106,7 +109,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 	 * with the assumption that the user already exist
 	 */
 	@Override
-	public boolean update(Object o) throws SQLException {
+	public boolean update(Object o) {
 		String sql = "update reservation_invoice\r\n"
 				+ "set reserve_user_id = ?, reserve_hotel_id = ?, reserve_check_in = ?, \r\n"
 				+ "reserve_check_out = ?, reserve_number_of_guests = ?, \r\n"
@@ -125,12 +128,15 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 			stm.setInt(8, res.getReservationID());
 
 			rows = stm.executeUpdate();
+		}catch (SQLException e) {
+			System.out.println("Something went wrong here");
+			e.printStackTrace();
 		}
 		return rows > 0 ? true : false;
 	}
 
 	@Override
-	public boolean delete(Object o) throws SQLException {
+	public boolean delete(Object o) {
 		String sql = "delete from reservation_invoice where reserve_id = ?";
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
@@ -138,7 +144,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setInt(1, res.getReservationID());
 			rows = stm.executeUpdate();
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in the delete method.");
 			e.printStackTrace();
 		}
@@ -148,7 +154,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 	/**
 	 * method that retreieves the reservation object through an id
 	 */
-	public Reservation findByID(int id) throws SQLException {
+	public Reservation findByID(int id) {
 		String sql = "select reserve_id, reserve_user_id, reserve_hotel_id, reserve_check_in, \n"
 				+ "reserve_check_out, reserve_number_of_guests, "
 				+ "reserve_number_of_rooms, reserve_total_pay from reservation_invoice where reserve_id = ?";
@@ -172,7 +178,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				invoice.setNumberOfRooms(rs.getInt("reserve_number_of_rooms"));
 				invoice.setTotalPay(rs.getBigDecimal("reserve_total_pay")); // the reason to have a set method :)
 			}
-		} catch (Exception e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong in findByID in reservation DAO");
 			e.printStackTrace();
 		}
