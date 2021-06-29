@@ -18,7 +18,9 @@
 
         <div class="col=lg-6">
             <div class="text-center">
-                <button type="submit" id = "button_hover" class="btn btn-primary btn-lg"> Book a Hotel</button>
+                <form method="POST" action="hello"> <!-- the action refers to the url pattern that routes the index to the servlet that can handle the methods-->
+                    <input type="submit" name="start-reservation" value="Booke a Hotel!" id = "button_hover" class="btn btn-primary btn-lg" > 
+                </form>
             </div>
             
         </div>
