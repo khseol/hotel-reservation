@@ -37,5 +37,8 @@ public class Patron_Service {
 	public boolean deleteUser(User_Information patron) throws SQLException{
 		return patronService.delete(patron);
 	}
+	public User_Information findUserByID(int id) throws SQLException{
+		return patronService.findUserByID(id);
+	}
 	
 }

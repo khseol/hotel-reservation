@@ -70,4 +70,14 @@ public class Test_UserDAO {
 	public void delete_user()throws SQLException{
 		assertEquals(true,testUser.delete(new User_Information(1)));
 	}
+	
+
+	/**
+	 * test ran success
+	 * @throws SQLException
+	 */
+	public void findUserByID_Test()throws SQLException{
+		String testString = "User_Information [user_id=2, user_name=Joey Wheeler, user_email=re.bd@outlook.com, travel_location=5]";
+		assertEquals(testString, testUser.findUserByID(2).toString());
+	}
 }

@@ -69,7 +69,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 				allRegisteredUsers.add(users);
 			}
 		} catch (Exception e) {
-			System.out.println("Something went wron in findAll method!");
+			System.out.println("Something went wrong in findAll method!");
 			e.printStackTrace();
 		}
 		//System.out.println(allRegisteredUsers);
@@ -79,9 +79,22 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	/**
 	 * find user by Id method...and extension of the find all users without the list
 	 */
-	public User_Information findUserByID(User_Information user) throws SQLException{
-		
-		return null;
+	public User_Information findUserByID(int id) throws SQLException{
+		String sql = "select user_id, user_name, user_email, user_travel_location from user_information where user_id = ?";
+		User_Information theUser = null;
+		try(Connection connection = DriverManager.getConnection(url, username, password2)){
+			PreparedStatement stm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+			stm.setInt(1, id);
+			ResultSet rs = stm.executeQuery();
+			while(rs.next()) {
+				theUser = new User_Information(rs.getInt("user_id"),rs.getString("user_name"), rs.getString("user_email"),
+						rs.getInt("user_travel_location"));
+			}
+		}catch (Exception e) {
+			System.out.println("Something went wrong int findByUserID method");
+			e.printStackTrace();
+		}
+		return theUser;
 	}
 	
 	

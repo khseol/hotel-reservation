@@ -20,6 +20,8 @@ import com.skillstorm.reservation.models.User_Information;
  * determine working logic and debugging
  * 
  * Refactor the reservation model to accept check in and check out as Calendar objects.
+ * 
+ * BECAUSE I'M SWITCHING BETWEEN LAPTOP TO DESKTOP, MAKESURE THE CORRECT PASSWORD IS USED.
  *
  */
 public class Test_ReservationDAO {
@@ -29,15 +31,18 @@ public class Test_ReservationDAO {
 	 * 
 	 * @throws SQLException
 	 * after fixing up the totalpay in model, this test ran true;
+	 * 
+	 * when pushing through the calendar object, MySql handles the formatting for the 
+	 * datetime data type for check_in and check_out.
 	 */
 
 	public void saveReservatio()throws SQLException{
 		//dummy object
 		//parameters to take in are--> user id, hotel id, check in, check out, number of guests, number of rooms, total pay
 		Calendar reserve_CI = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 16, 10, 0, 0);
-		Calendar reserve_CO = Calendar.getInstance();
-		reserve_CI.set(2021, 7, 20, 8, 0, 0);
+		reserve_CI.set(2021, 9, 01, 10, 30, 0); //check-in
+		Calendar reserve_CO = Calendar.getInstance(); //check-out
+		reserve_CO.set(2021, 9, 10, 12, 30, 0);
 		User_Information test_user = new User_Information(3);
 		Hotel_Information test_hotel = new Hotel_Information(61);
 		
@@ -46,8 +51,31 @@ public class Test_ReservationDAO {
 		assertEquals(true, testReservation.save(testReserve));
 	}
 
-	@Test
+	/**
+	 * Test ran true
+	 * @throws SQLException
+	 */
 	public void findAllReservations()throws SQLException{
-		assertEquals(2,testReservation.findAllReservations().size());
+		assertEquals(1,testReservation.findAllReservations().size());
+	}
+	
+	/**
+	 * test ran true
+	 * @throws SQLException
+	 */
+	public void deleteReservation() throws SQLException{
+	assertEquals(true, testReservation.delete(new Reservation(13)));
+	}
+	
+	@Test
+	public void updateReservation() throws SQLException{
+		User_Information testUser = new User_Information(3);
+		Hotel_Information testHotel = new Hotel_Information(53);
+		Calendar ci = Calendar.getInstance();
+		ci.set(2021, 8, 5, 9, 0, 0);
+		Calendar co = Calendar.getInstance();
+		co.set(2021,8, 9, 12, 0,0);
+		Reservation updateReservation = new Reservation(14,testUser, testHotel,ci, co, 4,2);
+		assertEquals(true,testReservation.update(updateReservation));
 	}
 }

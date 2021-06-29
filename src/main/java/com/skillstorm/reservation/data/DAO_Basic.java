@@ -20,6 +20,7 @@ public interface DAO_Basic {
 	String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	String username = "root";
 	String password = "rootPassword1!";
+	String password2 = "root";
 
 	// CREATE
 	public boolean save(Object o) throws SQLException;
