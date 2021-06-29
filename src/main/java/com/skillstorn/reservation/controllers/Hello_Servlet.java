@@ -24,11 +24,10 @@ public class Hello_Servlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String helloUser = req.getParameter("start-reservation");
-		System.out.println("Starting the reservation process"); //to see where the information is being handled.
-		req.getSession().setAttribute("helloUser", helloUser);
-		req.getRequestDispatcher("/jsp_pages/user-information.jsp").forward(req, resp); //this is dumb
+		String helloUser = req.getParameter("start-reservation"); //the name of the input
+		System.out.println(helloUser); //the NAME of the input tag is passed and the VALUE of the same tag is outputted
 		
+		resp.sendRedirect(req.getContextPath()+ "/jsp_pages/userInformation.jsp"); //grabs the path of the jsp files that are no in the same directory as index.
 	}
 	
 }
