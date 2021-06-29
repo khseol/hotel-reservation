@@ -14,8 +14,8 @@
 <body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class = "col-lg-12" style = "background-color: #01004C;">
-				<h1 style = "color: aliceblue; text-align: center;">SUITE TOOTH</h1>
+			<div class="col-lg-12" style="background-color: #01004C;">
+				<h1 style="color: aliceblue; text-align: center;">SUITE TOOTH</h1>
 			</div>
 		</div>
 		<!-- the first page the user is forwared to will need to fill out basic information:
@@ -24,25 +24,28 @@
 		respective model and table-->
 
 		<div class="row">
-			<form action="POST" action = "user" style="align-items: center;">
-				<div class = "form-group">
-					<label for= "forTheUserName" >Full Name</label>
-					<input type ="text" name="user_name" class="form-control" id = "forTheUserName" placeholder="Enter full name" style="padding: 15px;">
-					<small id = "Specifics" class = "text-muted">eg. Jane Doe</small>
-					<br>
+			<form action="POST" action="/user">
+				<div class="form-group">
 					
-					<label for="forUserEmail">Email</label>
-					<input type="email" name="user_email" class="form-control" id= "forUserEmail" placeholder="example@gmail.com" style="padding: 15px;">
-					<br>
-
-					<label for="user-travel-location"> Where are you travelling to?</label>
-					<select class="form-control form-select" style="padding: 15px;">
-						<!--will contain a jstl tags to output a list of the states in ascending order-->
-
-					</select>
+					<div id="forTheUserName">
+						<label for="forTheUserName">Full Name</label> 
+						<input type="text" name="user_name" class="form-control" id="forTheUserName" placeholder="Enter full name" style="padding: 15px;"> 
+						<small id="Specifics" class="text-muted">eg. Jane Doe</small> 
+						<br> 
+					</div>
 					
-					<br> <!--creates a line break inbetween elements-->
-					<input type="submit", class="btn btn-primary" >
+					<div id="forUserEmail">
+						<labelfor="forUserEmail">Email</label> 
+						<input type="email" name="user_email" class="form-control" placeholder="example@gmail.com" style="padding: 15px;"> 
+						<br>
+					</div>
+					
+					<div id=forSubmitting"">
+						<input type="submit" class="btn btn-primary" value="submit">
+					</div>
+					
+				
+				</div>
 			</form>
 		</div>
 

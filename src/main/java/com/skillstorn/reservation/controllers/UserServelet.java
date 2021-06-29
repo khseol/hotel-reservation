@@ -22,28 +22,12 @@ public class UserServelet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User_Information newUser = new User_Information();
+		//User_Information newUser = new User_Information();
 		String fullName = req.getParameter("user_name");
 		String email = req.getParameter("user_email");
-		int travelLocation = Integer.parseInt(req.getParameter("user_travel_location"));
+		System.out.println(fullName + " " + email);
 		
-		newUser.setUser_name(fullName);
-		newUser.setUser_email(email);
-		newUser.setTravel_location(travelLocation);
-
-		Patron_Service patron = new Patron_Service();
-		try{
-			patron.saveNewUser(newUser);
-		}catch(Exception e) {
-			System.out.println("Something went wrong inside user_servlet");
-			e.printStackTrace();
-		}
 		
 	}
 	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//will need load the location inside of the select tags
-		List<Travel_Locations> loadAllLocations = tService.listAllLocations();
-	}
 }
