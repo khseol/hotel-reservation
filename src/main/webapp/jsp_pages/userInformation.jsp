@@ -23,16 +23,28 @@
 		the requests will be handled in a separate servlet that will take in the information and apply it to its
 		respective model and table-->
 
-		<form action="POST" action = "user">
-			<div class = form-group>
-				<label for= "forTheUserName" >Full Name</label>
-				<input type ="text" class="form-control" id = "forTheUserName" placeholder="Enter full name">
-				<small id = "Specifics" class = "text-muted">eg. Jane Doe</small>
-				<input type="submit", >
-			</div>
+		<div class="row">
+			<form action="POST" action = "user" style="align-items: center;">
+				<div class = "form-group">
+					<label for= "forTheUserName" >Full Name</label>
+					<input type ="text" name="user_name" class="form-control" id = "forTheUserName" placeholder="Enter full name" style="padding: 15px;">
+					<small id = "Specifics" class = "text-muted">eg. Jane Doe</small>
+					<br>
+					
+					<label for="forUserEmail">Email</label>
+					<input type="email" name="user_email" class="form-control" id= "forUserEmail" placeholder="example@gmail.com" style="padding: 15px;">
+					<br>
 
+					<label for="user-travel-location"> Where are you travelling to?</label>
+					<select class="form-control form-select" style="padding: 15px;">
+						<!--will contain a jstl tags to output a list of the states in ascending order-->
 
-		</form>
+					</select>
+					
+					<br> <!--creates a line break inbetween elements-->
+					<input type="submit", class="btn btn-primary" >
+			</form>
+		</div>
 
 	</div>
 </body>
