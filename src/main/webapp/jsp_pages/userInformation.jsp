@@ -24,7 +24,7 @@
 		respective model and table-->
 
 		<div class="row">
-			<form method="POST" action="user">
+			<form method="post" action="userServlet">
 				<div class="form-group">
 					
 					<div id="forTheUserName">
