@@ -2,7 +2,6 @@ package com.skillstorm.reservation.models;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -69,8 +68,7 @@ public class Reservation {
 	 * @param checkOut
 	 * @param numberOfGuests
 	 * @param numberOfRooms
-	 * @param totalPay
-	 * Constructor for hard coding the fields
+	 * @param totalPay       Constructor for hard coding the fields
 	 */
 	public Reservation(int reservationID, User_Information userID, Hotel_Information hotelID, Calendar checkIn,
 			Calendar checkOut, int numberOfGuests, int numberOfRooms, BigDecimal totalPay) {
@@ -92,8 +90,7 @@ public class Reservation {
 	 * @param checkIn
 	 * @param checkOut
 	 * @param numberOfGuests
-	 * @param numberOfRooms
-	 * constructor that is used for saving new data
+	 * @param numberOfRooms  constructor that is used for saving new data
 	 */
 	public Reservation(User_Information userID, Hotel_Information hotelID, Calendar checkIn, Calendar checkOut,
 			int numberOfGuests, int numberOfRooms) {

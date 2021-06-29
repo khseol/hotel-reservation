@@ -1,10 +1,7 @@
 package com.skillstorm.reservation.data;
 
 import java.sql.SQLException;
-import java.util.List;
 
-import com.skillstorm.reservation.models.Reservation;
-import com.skillstorm.reservation.models.User_Information;
 
 /**
  * 

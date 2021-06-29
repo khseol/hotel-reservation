@@ -35,7 +35,7 @@ public class Hotel_Information_DAO_Impl {
 	private String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	private String username = "root";
 	private String password = "rootPassword1!";
-	private String password2 = "root";
+	private String password2 = "root"; //password for my desktop
 	
 
 	/**
@@ -73,7 +73,7 @@ public class Hotel_Information_DAO_Impl {
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id where hotel_id = ?;";
 		Hotel_Information hotel = null;
 
-		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();

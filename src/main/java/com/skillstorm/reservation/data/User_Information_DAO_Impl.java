@@ -82,7 +82,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	public User_Information findUserByID(int id) throws SQLException{
 		String sql = "select user_id, user_name, user_email, user_travel_location from user_information where user_id = ?";
 		User_Information theUser = null;
-		try(Connection connection = DriverManager.getConnection(url, username, password2)){
+		try(Connection connection = DriverManager.getConnection(url, username, password)){
 			PreparedStatement stm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
