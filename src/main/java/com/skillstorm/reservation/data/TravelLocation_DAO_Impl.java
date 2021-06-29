@@ -21,6 +21,7 @@ public class TravelLocation_DAO_Impl {
 	private String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	private String username= "root";
 	private String password = "rootPassword1!";
+	private String password2 = "root";
 
 	static {
 		try {
@@ -33,7 +34,7 @@ public class TravelLocation_DAO_Impl {
 	public List<Travel_Locations> listAllLocations(){
 		String sql = "Select location_id, location_state_name from TRAVEL_LOCATION";
 		List<Travel_Locations> allLocations = new LinkedList<>();
-		try(Connection connection = DriverManager.getConnection(url, username, password)){
+		try(Connection connection = DriverManager.getConnection(url, username, password2)){
 			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {

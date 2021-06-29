@@ -19,20 +19,38 @@ import com.skillstorm.reservation.service.Travel_Service;
  * @author Kathy
  * BECAUSE THE JSP PAGES ARE IN FOLDERS(!!!!!!!!), THE mapping OF THE SERVLETS WILL NEED TO BE SPECIFIC IN LOACTION
  * ON WHERE THE METHODS ARE BEING INVOKED
+ * 
+ * /jsp_pages/userServlet --> the back of my head
  */
 
-@WebServlet(name = "reservation-user", urlPatterns = "/jsp_pages/userServlet") //in the action, only 'userServlet' is mapped to call the methods
+@WebServlet(name = "reservation-user", urlPatterns = "/userServlet") //in the action, only 'userServlet' is mapped to call the methods
 public class UserServelet extends HttpServlet{
 
 	Travel_Service tService = new Travel_Service();
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//User_Information newUser = new User_Information();
 		String name = req.getParameter("user_name");
 		String email = req.getParameter("user_email");
-		System.out.println(name + " "+ email);
+		int location_id = Integer.parseInt(req.getParameter("user_location"));
 		
+		System.out.println(name + ' ' + email +' ' +location_id);
+		
+		
+		
+	}
+	
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		List<Travel_Locations> getAllLocations =tService.listAllLocations();
+		//System.out.println(getAllLocations);
+		req.getSession().setAttribute("locationData", getAllLocations);
+		
+		req.getRequestDispatcher("jsp_pages/userInformation.jsp").forward(req, resp);
+
 	}
 	
 }

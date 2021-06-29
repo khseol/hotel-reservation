@@ -28,8 +28,7 @@ public class Travel_Locations {
 
 	@Override
 	public String toString() {
-		return "Travel_Locations [location_id=" + location_id + ", stateName=" + stateName + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+		return "Travel_Locations [location_id=" + location_id + ", stateName=" + stateName + "]";
 	}
 
 	public int getLocation_id() {

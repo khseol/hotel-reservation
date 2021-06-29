@@ -35,16 +35,27 @@
 					</div>
 					
 					<div id="forUserEmail">
-						<labelfor="forUserEmail">Email</label> 
+						<label for="forUserEmail">Email</label> 
 						<input type="email" name="user_email" class="form-control" placeholder="example@gmail.com" style="padding: 15px;"> 
 						<br>
 					</div>
 					
-					<div id=forSubmitting"">
-						<input type="submit" class="btn btn-primary" value="submit">
+					<div id="forUserTravel">
+						<label for="forUserTravel">Where are you traveling to?</label>
+						<select class="selectpicker form-control" name="user_location" >
+							<option hidden >Select a state</option>
+							<c:forEach var="state" items="${locationData }">
+								<option value="${state.location_id }"><c:out value="${state.stateName }"></c:out></option>
+							</c:forEach>
+						</select>
+						<br>
 					</div>
 					
-				
+					<div id="forSubmitting">
+						<input type="submit" class="btn btn-primary" value="Choose a hotel">
+						
+					</div>
+					
 				</div>
 			</form>
 		</div>
