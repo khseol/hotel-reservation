@@ -27,16 +27,21 @@ import com.skillstorm.reservation.service.Travel_Service;
 public class UserServelet extends HttpServlet{
 
 	Travel_Service tService = new Travel_Service();
+	Patron_Service pService = new Patron_Service();
 	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//User_Information newUser = new User_Information();
+		User_Information newUser = new User_Information();
 		String name = req.getParameter("user_name");
 		String email = req.getParameter("user_email");
 		int location_id = Integer.parseInt(req.getParameter("user_location"));
 		
-		System.out.println(name + ' ' + email +' ' +location_id);
+		System.out.println(name + ' ' + email +' ' +location_id); //test if information was successfully received.
+		//once submitted, create the new user object and save it to database.
+		newUser.setUser_name(name);
+		newUser.setUser_email(email);
+		newUser.setTravel_location(location_id);
 		
 		
 		
