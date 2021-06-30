@@ -35,7 +35,12 @@ public class HotelSelection_Servlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int hotelID = Integer.parseInt(req.getParameter("selectedHotel"));
 		//System.out.println("Selected hotelID: "+ hotelID); //the hotel id was saved.
-		hService.getHotelByID(hotelID);
+		information = hService.getHotelByID(hotelID); //THIS DOES NOT GET SAVED TO THE RESERVATION OBJECT YET!
+		//forward the session to another jsp page where ask the user to fill out check_in check_out rooms and guest.
+		
+		req.getSession().setAttribute("newUser",(User_Information)req.getSession().getAttribute("newUser")); //FORWARD THIS TO THE RESERVATIONS TAB.
+		req.getSession().setAttribute("hotelInformation", information);
+		
 	}
 	
 	/**
@@ -46,7 +51,7 @@ public class HotelSelection_Servlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		newUser = (User_Information)req.getSession().getAttribute("newUser");
+		
 		System.out.println("Hotel servlet user information passed: "+ newUser.toString());
 		//what will be populating the web page. COME BACK FOR GRAPHICS AND CLEAN UP
 		List<Hotel_Information> availableHotels =hService.findByLocation(newUser.getTravel_location());//needs to take in an integer from the user object...
