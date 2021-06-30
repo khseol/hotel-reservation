@@ -31,7 +31,7 @@ public class Test_UserDAO {
 	 * @throws SQLException
 	 * result --> success
 	 */
-	@Test
+	
 	public void save_user() throws SQLException
 	{
 		User_Information user = new User_Information("Lucas Earthbound", "pkfreeze@gmail", 30);

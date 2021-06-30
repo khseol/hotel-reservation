@@ -50,7 +50,6 @@ public class HotelSelection_Servlet extends HttpServlet {
 		List<Hotel_Information> availableHotels =hService.findByLocation(newUser.getTravel_location());//needs to take in an integer from the user object...
 		req.getSession().setAttribute("listOfHotels", availableHotels); //'name' in the c:foreach will be "listOfHotels"
 		
-		
 		req.getRequestDispatcher("/jsp_pages/hotelSelection.jsp").forward(req, resp);
 	}
 }

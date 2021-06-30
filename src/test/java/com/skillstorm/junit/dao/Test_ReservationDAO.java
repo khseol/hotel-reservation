@@ -38,6 +38,7 @@ public class Test_ReservationDAO {
 	 *                      and check_out.
 	 */
 
+	@Test
 	public void saveReservatio() throws SQLException {
 		// dummy object
 		// parameters to take in are--> user id, hotel id, check in, check out, number
@@ -46,8 +47,8 @@ public class Test_ReservationDAO {
 		reserve_CI.set(2021, 9, 01, 10, 30, 0); // check-in
 		Calendar reserve_CO = Calendar.getInstance(); // check-out
 		reserve_CO.set(2021, 9, 10, 12, 30, 0);
-		User_Information test_user = new User_Information(3);
-		Hotel_Information test_hotel = new Hotel_Information(61);
+		User_Information test_user = new User_Information(13);
+		Hotel_Information test_hotel = new Hotel_Information(93);
 
 		Reservation testReserve = new Reservation(test_user, test_hotel, reserve_CI, reserve_CO, 5, 5);
 
