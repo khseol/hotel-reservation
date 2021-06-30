@@ -31,4 +31,8 @@ public class Hotel_Service {
 	public String getHotelLocation(Hotel_Information hotel){
 		return hotel_service.hotelLocatioName(hotel);
 	}
+	
+	public List<Hotel_Information> findByLocation(int location_id) {
+		return hotel_service.findByLocation(location_id);
+	}
 }

@@ -12,9 +12,27 @@ crossorigin="anonymous">
 </head>
 <body>
 	<div class="container-fluid">
-		<h1 style="background-color: #01004C; color:aliceblue; text-align: center">SELECT YOUR HOTEL</h1>
+		<div class="row">
+			<div class="col-lg-12" style="background-color: #01004C;">
+				<h1 style="color: aliceblue; text-align: center;">HOTEL BOOKER</h1>
+			</div>
+		</div>
 		
-		<div></div>
-	</div>
+		
+		<div class= "row"> <!-- this is the part that will display the hotels available to the user. -->
+			<form method="GET" action = "selectHotel" >
+				<div class="form group">
+					<table class="table table-hover">
+					
+						<tr><th>Hotel</th></tr>
+						<tr><th>Hotel Name</th></tr>
+						<tr><th>Hotel Price per Room</th></tr>
+						
+					</table>
+				</div>
+			</form>	
+		</div>
+		
+	</div> <!-- ending tag for the div element that has container fluid -->
 </body>
 </html>

@@ -90,6 +90,32 @@ public class Hotel_Information_DAO_Impl {
 		return hotel;
 	}
 
+	public List<Hotel_Information> findByLocation(int location_id) {
+		String sql = "select hotel_information.hotel_id, hotel_information.hotel_name, hotel_information.hotel_location_id, hotel_information.hotel_address_name, hotel_information.hotel_type, pricing.pricing_sale_rate, pricing.pricing_tax_rate from hotel_information\n"
+				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id where hotel_location_id = ?;";
+		List<Hotel_Information> hotels_at = new LinkedList<>();
+		Hotel_Information hotel = null;
+
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			stm.setInt(1, location_id);
+			ResultSet rs = stm.executeQuery();
+			while (rs.next()) {
+				hotel = new Hotel_Information(rs.getInt("hotel_id"), rs.getString("hotel_name"),
+						rs.getInt("hotel_location_id"), rs.getString("hotel_address_name"), rs.getInt("hotel_type"),
+						rs.getBigDecimal("pricing.pricing_sale_rate"), rs.getBigDecimal("pricing.pricing_tax_rate"));
+				
+				hotels_at.add(hotel);
+				//System.out.println(hotel);
+			}
+		} catch (SQLException e) {
+			System.out.println("Something went wrong in the findByLocation hotel method");
+			e.printStackTrace();
+		}
+		return hotels_at;
+	}
+	
+	
 	/**
 	 * the DAO method that will retrieve the location name of the hotel
 	 * this will be based on the hotel's id number.

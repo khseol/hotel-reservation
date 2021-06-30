@@ -15,7 +15,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-lg-12" style="background-color: #01004C;">
-				<h1 style="color: aliceblue; text-align: center;">SUITE TOOTH</h1>
+				<h1 style="color: aliceblue; text-align: center;">HOTEL BOOKER</h1>
 			</div>
 		</div>
 		<!-- the first page the user is forwared to will need to fill out basic information:

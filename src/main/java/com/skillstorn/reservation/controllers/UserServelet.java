@@ -41,19 +41,29 @@ public class UserServelet extends HttpServlet{
 		//once submitted, create the new user object and save it to database.
 		newUser = new User_Information(name,email,location_id);
 		//save the user object and check the data base
-		//pService.saveNewUser(newUser);
+		
+		pService.saveNewUser(newUser);
+		
+		//the next two lines should forward the information grabbed the previous servlet to the next...
+		req.getSession().setAttribute("newUser", newUser);
+		//req.getRequestDispatcher("jsp_pages/selectHotel").forward(req, resp); 
 		resp.sendRedirect("selectHotel"); //forces a call of a GET request since getRequestDispatcher is trying to find a post
 		
 	}
 	
-	
+	/**
+	 * locates where the data is coming from and 
+	 * 'glues' the contents on the page for user to see.
+	 * 
+	 * note: forward will send over the same data from the previous locations.
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<Travel_Locations> getAllLocations =tService.listAllLocations();
 		//System.out.println(getAllLocations);
 		req.getSession().setAttribute("locationData", getAllLocations);
 		
-		req.getRequestDispatcher("jsp_pages/userInformation.jsp").forward(req, resp);
+		req.getRequestDispatcher("jsp_pages/userInformation.jsp").forward(req, resp); //redirecting the right view
 
 	}
 	

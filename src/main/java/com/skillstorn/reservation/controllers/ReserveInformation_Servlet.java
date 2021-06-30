@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "reservation_info", urlPatterns = "reserve")
+@WebServlet(name = "reservation_info", urlPatterns = "/reserve")
 public class ReserveInformation_Servlet extends HttpServlet {
 
 	/**
