@@ -17,6 +17,8 @@ import com.skillstorm.reservation.service.Hotel_Service;
  * 
  * @author kathyhseol
  *"/jsp_pages/selectHotel" --> for testing
+ *
+ * future note: the hotel table will be expanded to accommodate a normal distribution of hotels per state.
  */
 @WebServlet(name = "hotel-selection", urlPatterns = "/selectHotel")
 public class HotelSelection_Servlet extends HttpServlet {

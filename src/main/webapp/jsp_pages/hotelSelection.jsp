@@ -20,18 +20,17 @@ crossorigin="anonymous">
 		
 		
 		<div class= "row"> <!-- this is the part that will display the hotels available to the user. -->
+		
 			<form method="GET" action = "selectHotel" >
 				<div class="form group">
 					<table class="table table-hover">
-					
-						<tr><th>Hotel</th></tr>
-						<tr><th>Hotel Name</th></tr>
-						<tr><th>Hotel Price per Room</th></tr>
-						
+						<thead>
+							<th scope="col">Hotel</th>
+						</thead>
 					</table>
 				</div>
 			</form>	
-		</div>
+		</div> <!-- closing tag for the second row class div element. -->
 		
 	</div> <!-- ending tag for the div element that has container fluid -->
 </body>

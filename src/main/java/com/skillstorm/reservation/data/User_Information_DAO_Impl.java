@@ -41,10 +41,13 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			stm.setString(2, user.getUser_email());
 			stm.setInt(3, user.getTravel_location());
 			rows = stm.executeUpdate(); // returns 1 for success, 0 for no rows changed
-			
-			ResultSet rs = stm.getGeneratedKeys();
-			user.setUser_id(rs.getInt(1)); //retrieves the user_id information from the table and sets it onto the object.
 
+			ResultSet rs = stm.getGeneratedKeys();
+			while (rs.next()) {
+				user.setUser_id(rs.getInt(1)); // retrieves the user_id information from the table and sets it onto the
+												// object.
+				System.out.println(user);
+			}
 		} catch (SQLException e) {
 			System.out.println("something happened in save method!");
 			e.printStackTrace();
@@ -75,35 +78,30 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			System.out.println("Something went wrong in findAll method!");
 			e.printStackTrace();
 		}
-		//System.out.println(allRegisteredUsers);
+		// System.out.println(allRegisteredUsers);
 		return allRegisteredUsers;
 	}
-	
+
 	/**
 	 * find user by Id method...and extension of the find all users without the list
 	 */
-	public User_Information findUserByID(int id){
+	public User_Information findUserByID(int id) {
 		String sql = "select user_id, user_name, user_email, user_travel_location from user_information where user_id = ?";
 		User_Information theUser = null;
-		try(Connection connection = DriverManager.getConnection(url, username, password)){
-			PreparedStatement stm = connection.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
-			while(rs.next()) {
-				theUser = new User_Information(rs.getInt("user_id"),rs.getString("user_name"), rs.getString("user_email"),
-						rs.getInt("user_travel_location"));
+			while (rs.next()) {
+				theUser = new User_Information(rs.getInt("user_id"), rs.getString("user_name"),
+						rs.getString("user_email"), rs.getInt("user_travel_location"));
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong int findByUserID method");
 			e.printStackTrace();
 		}
 		return theUser;
 	}
-	
-	
-	
-	
-	
 
 	/**
 	 * this method is implemented with the assumption that their id is already
@@ -136,7 +134,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 	 * specific id.
 	 */
 	@Override
-	public boolean delete(Object o){
+	public boolean delete(Object o) {
 		String sql = "delete from USER_INFORMATION where user_id = ?"; // the SQL statement that was tested in MySQL
 		int rows = 0; // again, rows affected will return integer greater than 0 if successful, 0
 						// otherwise.
