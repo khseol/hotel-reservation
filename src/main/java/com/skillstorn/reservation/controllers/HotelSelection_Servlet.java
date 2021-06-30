@@ -33,9 +33,9 @@ public class HotelSelection_Servlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		information = new Hotel_Information(); 
 		int hotelID = Integer.parseInt(req.getParameter("selectedHotel"));
-		System.out.println("Selected hotelID: "+ hotelID);
+		//System.out.println("Selected hotelID: "+ hotelID); //the hotel id was saved.
+		hService.getHotelByID(hotelID);
 	}
 	
 	/**

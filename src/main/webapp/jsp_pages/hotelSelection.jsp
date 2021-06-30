@@ -38,7 +38,7 @@ crossorigin="anonymous">
 									
 									<td><c:out value="${hotel.hotelLocationAddress}"></c:out></td> <!-- prints out the address of the hotel given by the state the user picked -->
 									
-									<td><c:out value="${hotel.hotelSaleRate}"></c:out></td> <!-- shows the price of the hotel..because the  --> 
+									<td>$<c:out value="${hotel.hotelSaleRate}"></c:out></td> <!-- shows the price of the hotel..because the  --> 
 									
 									<td><button name="selectedHotel" type="submit" class="btn btn-primary" value="${hotel.hotelID}">BOOK!</button> </td> <!-- will be a 'book' button that will book the hotel by saving the hotel's id-value -->
 								</tr>
