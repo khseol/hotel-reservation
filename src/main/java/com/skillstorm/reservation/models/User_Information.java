@@ -39,6 +39,12 @@ public class User_Information {
 		this.user_id = user_id;
 	}
 
+	/**
+	 * main constructor for setting up a user object
+	 * @param user_name
+	 * @param user_email
+	 * @param travel_location
+	 */
 	public User_Information(String user_name, String user_email, int travel_location) {
 		super();
 		this.user_name = user_name;

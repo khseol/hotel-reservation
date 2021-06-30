@@ -34,7 +34,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 		// BINDINGSs
 		String sql = "Insert into USER_INFORMATION (user_name, user_email, user_travel_location) values (?,?,?)";
 		int rows = 0;
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
 			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			User_Information user = (User_Information) o; // casted the object to user_information object
 			stm.setString(1, user.getUser_name());

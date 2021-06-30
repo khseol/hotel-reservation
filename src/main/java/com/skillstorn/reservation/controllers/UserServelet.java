@@ -32,18 +32,17 @@ public class UserServelet extends HttpServlet{
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		User_Information newUser = new User_Information();
+		User_Information newUser =null;
 		String name = req.getParameter("user_name");
 		String email = req.getParameter("user_email");
 		int location_id = Integer.parseInt(req.getParameter("user_location"));
 		
 		System.out.println(name + ' ' + email +' ' +location_id); //test if information was successfully received.
 		//once submitted, create the new user object and save it to database.
-		newUser.setUser_name(name);
-		newUser.setUser_email(email);
-		newUser.setTravel_location(location_id);
-		
-		
+		newUser = new User_Information(name,email,location_id);
+		//save the user object and check the data base
+		//pService.saveNewUser(newUser);
+		resp.sendRedirect("selectHotel"); //forces a call of a GET request since getRequestDispatcher is trying to find a post
 		
 	}
 	
