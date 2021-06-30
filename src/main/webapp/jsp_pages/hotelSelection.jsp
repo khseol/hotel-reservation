@@ -21,12 +21,29 @@ crossorigin="anonymous">
 		
 		<div class= "row"> <!-- this is the part that will display the hotels available to the user. -->
 		
-			<form method="GET" action = "selectHotel" >
+			<form method="POST" action = "selectHotel" >
 				<div class="form group">
 					<table class="table table-hover">
-						<thead>
-							<th scope="col">Hotel</th>
+						<thead style = "text-align:center ">
+							<th scope="col" >Hotel</th>
+							<th scope="col">Hotel Address</th>
+							<th scope ="col">Hotel Price</th>
+							<th></th> <!-- blank header to place a submit button -->
 						</thead>
+						
+						<tbody><!-- Dynamically generate hotel -->
+							<c:forEach var="hotel" items="${listOfHotels }">
+								<tr>
+									<td><c:out value="${hotel.hotelName}"></c:out></td> <!-- prints out the name of the hotel...maybe add a cute picture with it -->
+									
+									<td><c:out value="${hotel.hotelLocationAddress}"></c:out></td> <!-- prints out the address of the hotel given by the state the user picked -->
+									
+									<td><c:out value="${hotel.hotelSaleRate}"></c:out></td> <!-- shows the price of the hotel..because the  --> 
+									
+									<td><button name="selectedHotel" type="submit" class="btn btn-primary" value="${hotel.hotelID}">BOOK!</button> </td> <!-- will be a 'book' button that will book the hotel by saving the hotel's id-value -->
+								</tr>
+							</c:forEach>
+						</tbody>
 					</table>
 				</div>
 			</form>	

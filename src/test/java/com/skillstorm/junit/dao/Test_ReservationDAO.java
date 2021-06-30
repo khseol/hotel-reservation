@@ -38,7 +38,6 @@ public class Test_ReservationDAO {
 	 *                      and check_out.
 	 */
 
-	@Test
 	public void saveReservatio() throws SQLException {
 		// dummy object
 		// parameters to take in are--> user id, hotel id, check in, check out, number
