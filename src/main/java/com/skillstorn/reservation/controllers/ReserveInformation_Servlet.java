@@ -61,8 +61,8 @@ public class ReserveInformation_Servlet extends HttpServlet {
 		//project will assume that the user is placing the reservation without change.
 		//in the near future, project will be developed to accommodate changes to the user's information pre and post reservation.
 		
-		//pService.saveNewUser((User_Information)req.getSession().getAttribute("newUser"));
-		//rService.saveReservation(newReservation);
+		pService.saveNewUser((User_Information)req.getSession().getAttribute("newUser"));
+		rService.saveReservation(newReservation);
 		req.getSession().setAttribute("reservationInformation", newReservation);
 		req.getSession().setAttribute("Location", location);
 		req.getSession().setAttribute("CheckIn", clockIn);

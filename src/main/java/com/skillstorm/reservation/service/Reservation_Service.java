@@ -37,12 +37,16 @@ public class Reservation_Service {
 		return reservation_service.findByID(id);
 	}
 	
+	/**
+	 * method to reform the time that the user passed through from the jsp page.
+	 * simply just takes away the 'T' in the string and replaces it with ' '
+	 * @param dateTimeLocal
+	 * @return
+	 */
 	public String dateRefactor(String dateTimeLocal) {
 		StringBuilder strBuilder = new StringBuilder(dateTimeLocal);
 		strBuilder.setCharAt(10, ' ');
 		dateTimeLocal = strBuilder.toString();
-		System.out.println("In refactor: "+dateTimeLocal); //my functions does not take account for maritime.
-		
 		return dateTimeLocal;
 	}
 }

@@ -187,6 +187,7 @@ public class Reservation {
 	 * 
 	 * Fixed up the calculations to retrieve total pay. debating over the fact to
 	 * keep setTotalPay method...
+	 * formatted the value using the Decimal Formatter in the reservation servlet.
 	 */
 	public BigDecimal getTotalPay() {
 		Hotel_Service hotelInfo = new Hotel_Service();
@@ -210,6 +211,8 @@ public class Reservation {
 	 * 
 	 * the calendar object will need to have a method that will turn to datetime
 	 * format, not object address.
+	 * 
+	 * edited string to show each field in a new line as object items will automatically cal their toString method.
 	 */
 	@Override
 	public String toString() {
@@ -222,7 +225,6 @@ public class Reservation {
 	//this is the problem where it is incrementing my months by one for some reason.
 	public String calenderToString(Calendar date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // characters must me different
-		//System.out.println("inside simpleDateFormatter: " + formatter.format(date.getTime()));
 		return (formatter.format(date.getTime())) + timeOfDay;
 	}
 
@@ -234,16 +236,19 @@ public class Reservation {
 	 * i need to figure out why this is returning the address of the calendar
 	 * class....
 	 * 
+	 * future bug to fix: in calendarToString method, my string formatter is incrementing my months by 1 at every return.
+	 * look into and fix.
+	 * 
 	 * @param dateTime
 	 * @return
 	 */
 	public Calendar timeStampToCalendar(String dateTime) {
 		// parse tokenized string to their respective integer
-		// timestamp is format as yyyy-mm-dd HH:mm:SS
+		// timestamp is format as yyyy-MM-dd HH:mm:SS
 		Calendar cDateTime = Calendar.getInstance();
 		StringTokenizer date_time = new StringTokenizer(dateTime, " "); // separates the string as two separate string
-		String date = date_time.nextToken(); // holds the date in yyyy-mm-dd
-		String time = date_time.nextToken(); // holds the time in hh:mm:ss;
+		String date = date_time.nextToken(); // holds the date in yyyy-MM-dd
+		String time = date_time.nextToken(); // holds the time in HH:mm:ss;
 
 		date_time = new StringTokenizer(date, "-");
 		String year = date_time.nextToken();
@@ -266,6 +271,11 @@ public class Reservation {
 		return cDateTime;
 	}
 
+	/**
+	 * function that sets the time of day that the user tries to reserve for, replacement for the maritime format
+	 * @param am
+	 * @return
+	 */
 	public String timeOfDay(boolean am) {
 		if (am == true) {
 			this.timeOfDay = "AM";

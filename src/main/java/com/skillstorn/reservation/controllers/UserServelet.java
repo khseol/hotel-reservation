@@ -37,7 +37,6 @@ public class UserServelet extends HttpServlet {
 		String email = req.getParameter("user_email");
 		int location_id = Integer.parseInt(req.getParameter("user_location"));
 
-		System.out.println(name + ' ' + email + ' ' + location_id); // test if information was successfully received.
 		newUser = new User_Information(name, email, location_id);
 		req.getSession().setAttribute("newUser", newUser);
 		resp.sendRedirect("selectHotel"); // forces a call of a GET request since getRequestDispatcher is trying to find

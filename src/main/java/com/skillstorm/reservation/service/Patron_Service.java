@@ -20,8 +20,7 @@ public class Patron_Service {
 	User_Information_DAO_Impl patronService = new User_Information_DAO_Impl();
 
 	public boolean saveNewUser(User_Information patron){
-		return patronService.save(patron); // the patron object will be type casted when passing through the method
-											// execution process.
+		return patronService.save(patron); // the patron object will be type casted when passing through the method execution process.
 	}
 
 	public List<User_Information> showAllUsers(){

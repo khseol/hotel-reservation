@@ -81,7 +81,6 @@ public class Hotel_Information_DAO_Impl {
 				hotel = new Hotel_Information(rs.getInt("hotel_id"), rs.getString("hotel_name"),
 						rs.getInt("hotel_location_id"), rs.getString("hotel_address_name"), rs.getInt("hotel_type"),
 						rs.getBigDecimal("pricing.pricing_sale_rate"), rs.getBigDecimal("pricing.pricing_tax_rate"));
-				//System.out.println(hotel);
 			}
 		} catch (SQLException e) {
 			System.out.println("Something went wrong in the findByID hotel method");
@@ -106,7 +105,6 @@ public class Hotel_Information_DAO_Impl {
 						rs.getBigDecimal("pricing.pricing_sale_rate"), rs.getBigDecimal("pricing.pricing_tax_rate"));
 				
 				hotels_at.add(hotel);
-				//System.out.println(hotel);
 			}
 		} catch (SQLException e) {
 			System.out.println("Something went wrong in the findByLocation hotel method");
