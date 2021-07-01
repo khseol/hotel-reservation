@@ -1,7 +1,6 @@
 package com.skillstorm.reservation.models;
 
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -37,6 +36,7 @@ public class Reservation {
 	private int numberOfGuests;
 	private int numberOfRooms;
 	private BigDecimal totalPay;
+	private String timeOfDay;
 
 	public Reservation() {
 		super();
@@ -188,7 +188,7 @@ public class Reservation {
 	 * Fixed up the calculations to retrieve total pay. debating over the fact to
 	 * keep setTotalPay method...
 	 */
-	public BigDecimal getTotalPay(){
+	public BigDecimal getTotalPay() {
 		Hotel_Service hotelInfo = new Hotel_Service();
 		Hotel_Information sample = hotelInfo.getHotelByID(hotelID.getHotelID());
 		BigDecimal subtotal = sample.getHotelSaleRate().multiply(new BigDecimal(numberOfRooms));
@@ -215,13 +215,15 @@ public class Reservation {
 	public String toString() {
 		return "Reservation [reservationID=" + reservationID + ",\nuserID=" + userID + ",\nhotelID=" + hotelID
 				+ ",\ncheckIn=" + this.calenderToString(checkIn) + ",\ncheckOut=" + this.calenderToString(checkOut)
-				+ ",\nnumberOfGuests=" + numberOfGuests + ",\nnumberOfRooms=" + numberOfRooms + ", \ntotalPay=" + totalPay
-				+ "]";
+				+ ",\nnumberOfGuests=" + numberOfGuests + ",\nnumberOfRooms=" + numberOfRooms + ", \ntotalPay="
+				+ totalPay + "]";
 	}
 
+	//this is the problem where it is incrementing my months by one for some reason.
 	public String calenderToString(Calendar date) {
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss");
-		return (formatter.format(date.getTime()));
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // characters must me different
+		//System.out.println("inside simpleDateFormatter: " + formatter.format(date.getTime()));
+		return (formatter.format(date.getTime())) + timeOfDay;
 	}
 
 	/**
@@ -246,16 +248,31 @@ public class Reservation {
 		date_time = new StringTokenizer(date, "-");
 		String year = date_time.nextToken();
 		String month = date_time.nextToken();
+
 		String day = date_time.nextToken();
+
 		date_time = new StringTokenizer(time, ":");
 		String hour = date_time.nextToken();
+		if (Integer.parseInt(hour) > 12) { // checks for maritime
+			hour = String.valueOf(Integer.parseInt(hour) - 12); // difference is the time in 1-12hr pattern
+			this.timeOfDay(false);
+		} else {
+			this.timeOfDay(true);
+		}
 		String minute = date_time.nextToken();
-		String second = date_time.nextToken();
-
-		cDateTime.set(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day), Integer.parseInt(hour),
-				Integer.parseInt(minute), Integer.parseInt(second));
+		cDateTime.set(Integer.parseInt(year), (Integer.parseInt(month) - 1), Integer.parseInt(day),
+				Integer.parseInt(hour), Integer.parseInt(minute), 0);
 
 		return cDateTime;
+	}
+
+	public String timeOfDay(boolean am) {
+		if (am == true) {
+			this.timeOfDay = "AM";
+		} else if (am == false) { // want to make sure...
+			this.timeOfDay = "PM";
+		}
+		return timeOfDay;
 	}
 
 }

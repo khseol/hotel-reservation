@@ -1,7 +1,7 @@
 package com.skillstorn.reservation.controllers;
 
 import java.io.IOException;
-
+import java.text.DecimalFormat;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +18,8 @@ import com.skillstorm.reservation.service.Reservation_Service;
 @WebServlet(name = "reservation_info", urlPatterns = "/reserve")
 public class ReserveInformation_Servlet extends HttpServlet {
 	Reservation_Service rService = new Reservation_Service();
-	Hotel_Service hService = new Hotel_Service();
 	Patron_Service pService = new Patron_Service();
+	Hotel_Service hService = new Hotel_Service();
 	
 	/**
 	 * is used for the user to select a dateTime of reservation
@@ -51,15 +51,25 @@ public class ReserveInformation_Servlet extends HttpServlet {
 		newReservation.setUserID((User_Information)req.getSession().getAttribute("newUser"));
 		newReservation.setHotelID((Hotel_Information)req.getSession().getAttribute("hotelInformation"));
 		newReservation.setTotalPay(newReservation.getTotalPay());
-		
-		System.out.println(newReservation);
+		String location = hService.getHotelLocation(newReservation.getHotelID());
+		String clockIn= newReservation.calenderToString(newReservation.getCheckIn());
+		String clockOut= newReservation.calenderToString(newReservation.getCheckOut());
+		//format BigDecimal using decimal format
+		DecimalFormat formatD= new DecimalFormat("###.00");
+		String totalPay = formatD.format(newReservation.getTotalPay()).toString();
 		
 		//project will assume that the user is placing the reservation without change.
 		//in the near future, project will be developed to accommodate changes to the user's information pre and post reservation.
 		
-		pService.saveNewUser((User_Information)req.getSession().getAttribute("newUser"));
-		
-		
+		//pService.saveNewUser((User_Information)req.getSession().getAttribute("newUser"));
+		//rService.saveReservation(newReservation);
+		req.getSession().setAttribute("reservationInformation", newReservation);
+		req.getSession().setAttribute("Location", location);
+		req.getSession().setAttribute("CheckIn", clockIn);
+		req.getSession().setAttribute("CheckOut", clockOut);
+		req.getSession().setAttribute("pay",totalPay);
+
+		req.getRequestDispatcher("/jsp_pages/confirmation.jsp").forward(req, resp);//bug on a new save user and reservation entry for every refresh.
 	}
 	/**
 	 * this will render the page on call of the servlet.

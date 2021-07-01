@@ -40,8 +40,8 @@ public class Reservation_Service {
 	public String dateRefactor(String dateTimeLocal) {
 		StringBuilder strBuilder = new StringBuilder(dateTimeLocal);
 		strBuilder.setCharAt(10, ' ');
-		strBuilder.append(":00");
 		dateTimeLocal = strBuilder.toString();
+		System.out.println("In refactor: "+dateTimeLocal); //my functions does not take account for maritime.
 		
 		return dateTimeLocal;
 	}

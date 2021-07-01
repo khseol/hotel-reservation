@@ -56,7 +56,6 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 			ResultSet rs = stm.getGeneratedKeys();
 			while (rs.next()) {
 				res.setReservationID(rs.getInt(1));
-				System.out.println(res);
 			}
 		} catch (Exception e) {
 			System.out.println("Soemthing went wrong in save metod.");
@@ -77,7 +76,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				+ "reserve_number_of_rooms, reserve_total_pay from reservation_invoice";
 		List<Reservation> allReservations = new LinkedList<>();
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();
 			// call of the service class for hotel and users for deeper information
 			Patron_Service user_service = new Patron_Service();
@@ -88,10 +87,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				res.setReservationID(rs.getInt("reserve_id"));
 				res.setUserID(user_service.findUserByID(rs.getInt("reserve_user_id")));
 				res.setHotelID(hotel_service.getHotelByID(rs.getInt("reserve_hotel_id")));
-				res.setCheckIn(res.timeStampToCalendar(rs.getString("reserve_check_in"))); // object type is Calendar
-																							// but toString of object
-																							// needs to be formatted
-																							// using String formatter
+				res.setCheckIn(res.timeStampToCalendar(rs.getString("reserve_check_in"))); // object type is Calendar																						
 				res.setCheckOut(res.timeStampToCalendar(rs.getString("reserve_check_out"))); // this produces the string
 																								// format of the
 																								// datetime...
@@ -120,7 +116,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				+ "reserve_number_of_rooms = ?, reserve_total_pay= ?\r\n" + "where reserve_id = ?";
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			Reservation res = (Reservation) o;
 			stm.setObject(1, res.getUserID().getUser_id()); // the set object method is unsure.
 			stm.setObject(2, res.getHotelID().getHotelID()); // i am just chaining these together...
@@ -145,7 +141,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 		int rows = 0;
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			Reservation res = (Reservation) o;
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, res.getReservationID());
 			rows = stm.executeUpdate();
 		} catch (SQLException e) {
@@ -165,7 +161,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 		Reservation invoice = null;
 
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 			Patron_Service user_service = new Patron_Service();

@@ -35,7 +35,7 @@ public class TravelLocation_DAO_Impl {
 		String sql = "Select location_id, location_state_name from TRAVEL_LOCATION";
 		List<Travel_Locations> allLocations = new LinkedList<>();
 		try(Connection connection = DriverManager.getConnection(url, username, password)){
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {
 				Travel_Locations location = new Travel_Locations(rs.getInt("location_id"), rs.getString("location_state_name"));
@@ -54,7 +54,7 @@ public class TravelLocation_DAO_Impl {
 		String sql = "select location_id, location_state_name from TRAVEL_LOCATION where location_id = ?";
 		Travel_Locations location = null;
 		try(Connection connection = DriverManager.getConnection(url, username, password)){
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {
@@ -71,7 +71,7 @@ public class TravelLocation_DAO_Impl {
 		String sql = "select location_id, location_state_name from TRAVEL_LOCATION where location_state_name = ?";
 		Travel_Locations location = null;
 		try(Connection connection = DriverManager.getConnection(url, username, password)){
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setString(1, stateName);
 			ResultSet rs = stm.executeQuery();
 			while(rs.next()) {

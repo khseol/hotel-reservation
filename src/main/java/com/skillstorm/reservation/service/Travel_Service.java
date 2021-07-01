@@ -18,7 +18,7 @@ public class Travel_Service {
 		return travelService.locationsByID(id);
 	}
 	
-	public Travel_Locations findById (String stateName){
+	public Travel_Locations findByName (String stateName){
 		return travelService.locationsByName(stateName);
 	}
 }
