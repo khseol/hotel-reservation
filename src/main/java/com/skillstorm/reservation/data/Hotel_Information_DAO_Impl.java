@@ -49,8 +49,8 @@ public class Hotel_Information_DAO_Impl {
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id;";
 		List<Hotel_Information> allHotels = new LinkedList<>();
 
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+			PreparedStatement stm = connection.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery(sql);
 
 			while (rs.next()) {
@@ -73,8 +73,8 @@ public class Hotel_Information_DAO_Impl {
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id where hotel_id = ?;";
 		Hotel_Information hotel = null;
 
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {
@@ -96,8 +96,8 @@ public class Hotel_Information_DAO_Impl {
 		List<Hotel_Information> hotels_at = new LinkedList<>();
 		Hotel_Information hotel = null;
 
-		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, location_id);
 			ResultSet rs = stm.executeQuery();
 			while (rs.next()) {

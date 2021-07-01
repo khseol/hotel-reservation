@@ -8,6 +8,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
 	crossorigin="anonymous">
+
 <meta charset="UTF-8">
 <title>User Information</title>
 </head>
@@ -26,36 +27,37 @@
 		<div class="row">
 			<form method="post" action="userServlet">
 				<div class="form-group">
-					
+
 					<div id="forTheUserName">
-						<label for="forTheUserName">Full Name</label> 
-						<input type="text" name="user_name" class="form-control" id="forTheUserName" placeholder="Enter full name" style="padding: 15px;"> 
-						<small id="Specifics" class="text-muted">eg. Jane Doe</small> 
-						<br> 
+						<label for="forTheUserName">Full Name</label> <input type="text"
+							name="user_name" class="form-control" id="forTheUserName"
+							placeholder="Enter full name" style="padding: 15px;"> <small
+							id="Specifics" class="text-muted">eg. Jane Doe</small> <br>
 					</div>
-					
+
 					<div id="forUserEmail">
-						<label for="forUserEmail">Email</label> 
-						<input type="email" name="user_email" class="form-control" placeholder="example@gmail.com" style="padding: 15px;"> 
-						<br>
+						<label for="forUserEmail">Email</label> <input type="email"
+							name="user_email" class="form-control"
+							placeholder="example@gmail.com" style="padding: 15px;"> <br>
 					</div>
-					
+
 					<div id="forUserTravel">
-						<label for="forUserTravel">Where are you traveling to?</label>
-						<select class="selectpicker form-control" name="user_location" >
-							<option hidden >Select a state</option>
+						<label for="forUserTravel">Where are you traveling to?</label> <select
+							class="selectpicker form-control" name="user_location">
+							<option hidden>Select a state</option>
 							<c:forEach var="state" items="${locationData }">
-								<option value="${state.location_id }"><c:out value="${state.stateName }"></c:out></option>
+								<option value="${state.location_id }"><c:out
+										value="${state.stateName }"></c:out></option>
 							</c:forEach>
-						</select>
-						<br>
+						</select> <br>
 					</div>
-					
+
 					<div id="forSubmitting">
-						<input type="submit" class="btn btn-primary" value="Choose a hotel">
-						
+						<input type="submit" class="btn btn-primary"
+							value="Choose a hotel">
+
 					</div>
-					
+
 				</div>
 			</form>
 		</div>
