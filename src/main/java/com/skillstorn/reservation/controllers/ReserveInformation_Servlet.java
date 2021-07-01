@@ -20,11 +20,13 @@ public class ReserveInformation_Servlet extends HttpServlet {
 	 * 
 	 * important to note that the passed strings will not have a "ss" in their string, so i will need to append a default :00
 	 * and convert to calendar.
+	 * 
+	 * format of the date-time if yyyy-mm-ddThh:mm be default, the ss are zeros.
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String checkIn = req.getParameter("checkInTime"); //will be a string that holds the date and time-->needs to be converted.
-		String checkOut = req.getParameter("");
+		String checkOut = req.getParameter("checkOutTime");
 		String numOfGuests = req.getParameter("");
 		String numOfRooms = req.getParameter("");
 	}

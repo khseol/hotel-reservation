@@ -35,7 +35,7 @@ public class Hotel_Information_DAO_Impl {
 	private String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	private String username = "root";
 	private String password = "rootPassword1!";
-	private String password2 = "root"; //password for my desktop
+	private String password2 = "root"; //password for my desktop delete later for final product
 	
 
 	/**
@@ -49,7 +49,7 @@ public class Hotel_Information_DAO_Impl {
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id;";
 		List<Hotel_Information> allHotels = new LinkedList<>();
 
-		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement stm = connection.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery(sql);
 
@@ -73,7 +73,7 @@ public class Hotel_Information_DAO_Impl {
 				+ "inner join pricing\n" + "on hotel_information.hotel_type = PRICING.pricing_id where hotel_id = ?;";
 		Hotel_Information hotel = null;
 
-		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, id);
 			ResultSet rs = stm.executeQuery();
@@ -96,7 +96,7 @@ public class Hotel_Information_DAO_Impl {
 		List<Hotel_Information> hotels_at = new LinkedList<>();
 		Hotel_Information hotel = null;
 
-		try (Connection connection = DriverManager.getConnection(url, username, password2)) {
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement stm = connection.prepareStatement(sql);
 			stm.setInt(1, location_id);
 			ResultSet rs = stm.executeQuery();
