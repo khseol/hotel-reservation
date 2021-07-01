@@ -52,8 +52,12 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 			stm.setInt(6, res.getNumberOfRooms());
 			stm.setBigDecimal(7, res.getTotalPay());
 			// System.out.println("The total expected pay: " + res.getTotalPay());
-
 			rows = stm.executeUpdate();
+			ResultSet rs = stm.getGeneratedKeys();
+			while (rs.next()) {
+				res.setReservationID(rs.getInt(1));
+				System.out.println(res);
+			}
 		} catch (Exception e) {
 			System.out.println("Soemthing went wrong in save metod.");
 			e.printStackTrace();
@@ -97,7 +101,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 
 				allReservations.add(res);
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong here");
 			e.printStackTrace();
 		}
@@ -128,7 +132,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 			stm.setInt(8, res.getReservationID());
 
 			rows = stm.executeUpdate();
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println("Something went wrong here");
 			e.printStackTrace();
 		}
@@ -159,8 +163,7 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				+ "reserve_check_out, reserve_number_of_guests, "
 				+ "reserve_number_of_rooms, reserve_total_pay from reservation_invoice where reserve_id = ?";
 		Reservation invoice = null;
-		
-		
+
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
 			PreparedStatement stm = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stm.setInt(1, id);
@@ -172,8 +175,8 @@ public class Reservation_DAO_Impl implements DAO_Basic {
 				invoice.setReservationID(rs.getInt("reserve_id"));
 				invoice.setUserID(user_service.findUserByID(rs.getInt("reserve_user_id")));
 				invoice.setHotelID(hotel_service.getHotelByID(rs.getInt("reserve_hotel_id")));
-				invoice.setCheckIn(invoice.timeStampToCalendar(rs.getString("reserve_check_in"))); 
-				invoice.setCheckOut(invoice.timeStampToCalendar(rs.getString("reserve_check_out"))); 
+				invoice.setCheckIn(invoice.timeStampToCalendar(rs.getString("reserve_check_in")));
+				invoice.setCheckOut(invoice.timeStampToCalendar(rs.getString("reserve_check_out")));
 				invoice.setNumberOfGuests(rs.getInt("reserve_number_of_guests"));
 				invoice.setNumberOfRooms(rs.getInt("reserve_number_of_rooms"));
 				invoice.setTotalPay(rs.getBigDecimal("reserve_total_pay")); // the reason to have a set method :)

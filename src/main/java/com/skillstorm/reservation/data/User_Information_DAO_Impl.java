@@ -46,7 +46,7 @@ public class User_Information_DAO_Impl implements DAO_Basic {
 			while (rs.next()) {
 				user.setUser_id(rs.getInt(1)); // retrieves the user_id information from the table and sets it onto the
 												// object.
-				System.out.println(user);
+				System.out.println(user); //proof the the user-id is set upon saving
 			}
 		} catch (SQLException e) {
 			System.out.println("something happened in save method!");
