@@ -1,7 +1,6 @@
 package com.skillstorn.reservation.controllers;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,7 +28,7 @@ import com.skillstorm.reservation.service.Travel_Service;
 public class UserServelet extends HttpServlet {
 
 	Travel_Service tService = new Travel_Service();
-	Patron_Service pService = new Patron_Service();
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,16 +38,8 @@ public class UserServelet extends HttpServlet {
 		int location_id = Integer.parseInt(req.getParameter("user_location"));
 
 		System.out.println(name + ' ' + email + ' ' + location_id); // test if information was successfully received.
-		// once submitted, create the new user object and save it to database.
 		newUser = new User_Information(name, email, location_id);
-		// save the user object and check the data base
-
-		//pService.saveNewUser(newUser); //moving this save service to the reservation.
-
-		// the next two lines should forward the information grabbed the previous
-		// servlet to the next...
 		req.getSession().setAttribute("newUser", newUser);
-		// req.getRequestDispatcher("jsp_pages/selectHotel").forward(req, resp);
 		resp.sendRedirect("selectHotel"); // forces a call of a GET request since getRequestDispatcher is trying to find
 											// a post
 	}

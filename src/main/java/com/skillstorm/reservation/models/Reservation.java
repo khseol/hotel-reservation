@@ -188,7 +188,7 @@ public class Reservation {
 	 * Fixed up the calculations to retrieve total pay. debating over the fact to
 	 * keep setTotalPay method...
 	 */
-	public BigDecimal getTotalPay() throws SQLException {
+	public BigDecimal getTotalPay(){
 		Hotel_Service hotelInfo = new Hotel_Service();
 		Hotel_Information sample = hotelInfo.getHotelByID(hotelID.getHotelID());
 		BigDecimal subtotal = sample.getHotelSaleRate().multiply(new BigDecimal(numberOfRooms));
@@ -213,9 +213,9 @@ public class Reservation {
 	 */
 	@Override
 	public String toString() {
-		return "Reservation [reservationID=" + reservationID + ", userID=" + userID + ", hotelID=" + hotelID
-				+ ", checkIn=" + this.calenderToString(checkIn) + ", checkOut=" + this.calenderToString(checkOut)
-				+ ", numberOfGuests=" + numberOfGuests + ", numberOfRooms=" + numberOfRooms + ", totalPay=" + totalPay
+		return "Reservation [reservationID=" + reservationID + ",\nuserID=" + userID + ",\nhotelID=" + hotelID
+				+ ",\ncheckIn=" + this.calenderToString(checkIn) + ",\ncheckOut=" + this.calenderToString(checkOut)
+				+ ",\nnumberOfGuests=" + numberOfGuests + ",\nnumberOfRooms=" + numberOfRooms + ", \ntotalPay=" + totalPay
 				+ "]";
 	}
 

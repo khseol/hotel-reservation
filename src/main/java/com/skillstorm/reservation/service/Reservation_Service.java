@@ -36,4 +36,13 @@ public class Reservation_Service {
 	public Reservation findReservationByID(int id){
 		return reservation_service.findByID(id);
 	}
+	
+	public String dateRefactor(String dateTimeLocal) {
+		StringBuilder strBuilder = new StringBuilder(dateTimeLocal);
+		strBuilder.setCharAt(10, ' ');
+		strBuilder.append(":00");
+		dateTimeLocal = strBuilder.toString();
+		
+		return dateTimeLocal;
+	}
 }

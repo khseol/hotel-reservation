@@ -20,7 +20,6 @@ crossorigin="anonymous">
 		
 		
 		<div class= "row"> <!-- this is the part that will display the hotels available to the user. -->
-		
 			<form method="POST" action = "selectHotel" >
 				<div class="form group">
 					<table class="table table-hover">
