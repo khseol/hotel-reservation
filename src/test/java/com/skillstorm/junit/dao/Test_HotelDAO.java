@@ -2,7 +2,6 @@ package com.skillstorm.junit.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
 import java.util.List;
 
 //import org.junit.Test; //this will flash yellow every time i am not in testing
@@ -19,7 +18,7 @@ public class Test_HotelDAO {
 	 * @throws SQLException
 	 */
 	
-	public void findAllHotel_Test() throws SQLException {
+	public void findAllHotel_Test(){
 		List<Hotel_Information> allListedHotels = testHotel.findAllHotels();
 		assertEquals(100,allListedHotels.size());
 	}
@@ -30,7 +29,7 @@ public class Test_HotelDAO {
 	 * @throws SQLException
 	 */
 
-	public void findHotelByID_Test() throws SQLException{
+	public void findHotelByID_Test(){
 		String sampleHotel = "Hotel_Information [hotelID=2, hotelName=Mayer and Sons, hotelLocationID=29, hotelLocationAddress=1603 South Lane, hotelType=1, hotelSaleRate=322.00, hotelTaxRate=17.41]";
 		assertEquals(sampleHotel, testHotel.findByID(95).toString());
 	}
@@ -40,7 +39,7 @@ public class Test_HotelDAO {
 	 * test ran successful.
 	 * @throws SQLException
 	 */
-	public void hotelLocationName_Test() throws SQLException{
+	public void hotelLocationName_Test(){
 		Hotel_Information test = new Hotel_Information(7);
 		assertEquals("Iowa",testHotel.hotelLocatioName(test));
 	}

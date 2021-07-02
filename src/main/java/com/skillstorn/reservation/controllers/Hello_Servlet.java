@@ -26,7 +26,7 @@ public class Hello_Servlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String helloUser = req.getParameter("start-reservation"); //the name of the input
+		//String helloUser = req.getParameter("start-reservation"); //the name of the input
 		//System.out.println(helloUser); //the NAME of the input tag is passed and the VALUE of the same tag is output.
 		resp.sendRedirect("userServlet"); //by redirecting the /hello userServlet, the userServlet is loaded.
 	}

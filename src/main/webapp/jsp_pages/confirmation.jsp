@@ -24,42 +24,55 @@ crossorigin="anonymous">
 			<h1>Reservation Invoice:</h1> <!-- the name of the attribute set in java invoice servlet: reservationInformation -->
 			<button type="button" class="btn btn-outline-info btn-md"id="printInvoice" 
 			style="float:right; padding:5px;" onclick ="window.print()">Print</button>	
+			
 			<br>
 			<h2 class="reservation"name="invoice_number">#<c:out value="${reservationInformation.reservationID}"></c:out></h2>
 			<h3 class="userInformation" style="text-decoration: underline;">User Information</h3>
 			<table class="table table-borderless">
 				<thead>
-					<th scope="col"class="col-md-6">Name</th>
-					<th scope="col"class="col-md-6">Email</th>
+					<tr>
+						<th scope="col"class="col-md-6">Name</th>
+						<th scope="col"class="col-md-6">Email</th>
+					</tr>
 				</thead>
 				<tbody>
-					<td><c:out value="${reservationInformation.userID.user_name }"></c:out></td>
-					<td><c:out value="${reservationInformation.userID.user_email }"></c:out></td>
+					<tr>
+						<td><c:out value="${reservationInformation.userID.user_name }"></c:out></td>
+						<td><c:out value="${reservationInformation.userID.user_email }"></c:out></td>
+					</tr>
 				</tbody>
 			</table>
 			<table class="table table-borderless">
 				<thead>
-					<th scope="col"class="col-md-3">Hotel Name</th>
-					<th scope="col"class="col-md-3">Address</th>
-					<th scope="col"class="col-md-3">State</th> <!-- the expression to be used for location is ${Location} -->
+					<tr>
+						<th scope="col"class="col-md-3">Hotel Name</th>
+						<th scope="col"class="col-md-3">Address</th>
+						<th scope="col"class="col-md-3">State</th> <!-- the expression to be used for location is ${Location} -->
+					</tr>
 				</thead>
 				<tbody>
-					<td><c:out value="${reservationInformation.hotelID.hotelName}"></c:out></td>
-					<td><c:out value="${reservationInformation.hotelID.hotelLocationAddress}"></c:out></td>
-					<td><c:out value="${Location}"></c:out></td>
+					<tr>
+						<td><c:out value="${reservationInformation.hotelID.hotelName}"></c:out></td>
+						<td><c:out value="${reservationInformation.hotelID.hotelLocationAddress}"></c:out></td>
+						<td><c:out value="${Location}"></c:out></td>
+					</tr>
 				</tbody>
 			</table>
 			<table class="table table-borderless">
 				<thead>
-					<th scope="col"class="col-md-3">Number of Guests</th>
-					<th scope="col"class="col-md-3">Number of Rooms</th>
-					<th scope="col"class="col-md-3">Check-IN/Check-OUT</th>
+					<tr>
+						<th scope="col"class="col-md-3">Number of Guests</th>
+						<th scope="col"class="col-md-3">Number of Rooms</th>
+						<th scope="col"class="col-md-3">Check-IN/Check-OUT</th>
+					</tr>
 				</thead>
 				<tbody>
-					<td><c:out value="${reservationInformation.numberOfGuests }"></c:out></td>
-					<td><c:out value="${reservationInformation.numberOfRooms }"></c:out></td>
-					<td><c:out value="${CheckIn}"></c:out><br>
-							<c:out value="${CheckOut}"></c:out></td>
+					<tr>
+						<td><c:out value="${reservationInformation.numberOfGuests }"></c:out></td>
+						<td><c:out value="${reservationInformation.numberOfRooms }"></c:out></td>
+						<td><c:out value="${CheckIn}"></c:out><br>
+								<c:out value="${CheckOut}"></c:out></td>
+					</tr>
 				</tbody>
 			</table>
 			<br>
