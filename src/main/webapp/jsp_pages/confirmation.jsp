@@ -22,7 +22,9 @@ crossorigin="anonymous">
 		
 		<div class="col-lg-12 rounded" style="border: 2px solid #01004C; border-style: dotted;margin-top: 2%;">
 			<h1>Reservation Invoice:</h1> <!-- the name of the attribute set in java invoice servlet: reservationInformation -->
-				<br>
+			<button type="button" class="btn btn-outline-info btn-md"id="printInvoice" 
+			style="float:right; padding:5px;" onclick ="window.print()">Print</button>	
+			<br>
 			<h2 class="reservation"name="invoice_number">#<c:out value="${reservationInformation.reservationID}"></c:out></h2>
 			<h3 class="userInformation" style="text-decoration: underline;">User Information</h3>
 			<table class="table table-borderless">
