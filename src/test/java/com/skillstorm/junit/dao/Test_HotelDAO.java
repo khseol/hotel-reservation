@@ -2,12 +2,10 @@ package com.skillstorm.junit.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.junit.Test; //this will flash yellow every time i am not in testing
+//import org.junit.Test; //this will flash yellow every time i am not in testing
 
 import com.skillstorm.reservation.data.Hotel_Information_DAO_Impl;
 import com.skillstorm.reservation.models.Hotel_Information;

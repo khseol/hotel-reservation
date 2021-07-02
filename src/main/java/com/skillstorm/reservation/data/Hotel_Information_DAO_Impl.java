@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import com.skillstorm.reservation.models.Hotel_Information;
@@ -35,7 +34,7 @@ public class Hotel_Information_DAO_Impl {
 	private String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	private String username = "root";
 	private String password = "rootPassword1!";
-	private String password2 = "root"; //password for my desktop delete later for final product
+	//private String password2 = "root"; //password for my desktop delete later for final product
 	
 
 	/**

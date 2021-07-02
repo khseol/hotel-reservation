@@ -2,7 +2,7 @@ package com.skillstorm.junit.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.skillstorm.reservation.data.TravelLocation_DAO_Impl;
 

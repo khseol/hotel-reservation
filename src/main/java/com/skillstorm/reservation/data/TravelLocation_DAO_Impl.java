@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class TravelLocation_DAO_Impl {
 	private String url = "jdbc:mysql://localhost:3306/RESERVATION";
 	private String username= "root";
 	private String password = "rootPassword1!";
-	private String password2 = "root"; //will erase for the final product...along with any other mentions of this password
+	//private String password2 = "root"; //will erase for the final product...along with any other mentions of this password
 
 	static {
 		try {

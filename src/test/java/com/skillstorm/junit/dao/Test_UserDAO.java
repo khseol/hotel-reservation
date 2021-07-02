@@ -5,8 +5,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.sql.SQLException;
 
-import org.junit.Ignore;
-import org.junit.Test;
+//import org.junit.Ignore;
+//import org.junit.Test;
 
 import com.skillstorm.reservation.data.User_Information_DAO_Impl;
 import com.skillstorm.reservation.models.User_Information;

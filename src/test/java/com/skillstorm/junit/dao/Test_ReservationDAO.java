@@ -5,7 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.sql.SQLException;
 import java.util.Calendar;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.skillstorm.reservation.data.Reservation_DAO_Impl;
 import com.skillstorm.reservation.models.Hotel_Information;
