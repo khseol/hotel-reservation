@@ -8,6 +8,7 @@
 rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
 crossorigin="anonymous">
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,14 +31,14 @@ crossorigin="anonymous">
 							<th></th> <!-- blank header to place a submit button -->
 						</thead>
 						
-						<tbody><!-- Dynamically generate hotel -->
+						<tbody style="text-align: center;'"><!-- Dynamically generate hotel -->
 							<c:forEach var="hotel" items="${listOfHotels }">
 								<tr>
-									<td><c:out value="${hotel.hotelName}"></c:out></td> <!-- prints out the name of the hotel...maybe add a cute picture with it -->
+									<td id="hotelName"><c:out value="${hotel.hotelName}"></c:out></td> <!-- prints out the name of the hotel...maybe add a cute picture with it -->
 									
 									<td><c:out value="${hotel.hotelLocationAddress}"></c:out></td> <!-- prints out the address of the hotel given by the state the user picked -->
 									
-									<td>$<c:out value="${hotel.hotelSaleRate}"></c:out></td> <!-- shows the price of the hotel..because the  --> 
+									<td>$<c:out value="${hotel.hotelSaleRate}"></c:out>/room</td> <!-- shows the price of the hotel..because the  --> 
 									
 									<td><button name="selectedHotel" type="submit" class="btn btn-primary" value="${hotel.hotelID}">BOOK!</button> </td> <!-- will be a 'book' button that will book the hotel by saving the hotel's id-value -->
 								</tr>
